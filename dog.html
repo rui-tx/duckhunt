@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Duck Hunt Dog Animation</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #87ceeb;
+      }
+      #gameArea {
+        width: 416px;
+        height: 379px;
+        background-color: #87ceeb;
+        position: relative;
+        overflow: hidden;
+      }
+      #dog {
+        width: 64px;
+        height: 110px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: url("./Arcade\ -\ Vs\ Duck\ Hunt\ -\ Vs\ Duck\ Hunt.png")
+          no-repeat -280px -192px;
+        transform: translateX(-50%) scale(6);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="gameArea">
+      <div id="dog"></div>
+    </div>
+
+    <script>
+      const dog = document.getElementById("dog");
+      const frames = [
+        "-280px -192px",
+        "-346px -192px",
+        "-412px -192px",
+        "-478px -192px",
+        "-544px -192px",
+        "-610px -192px",
+      ];
+      let currentFrame = 0;
+
+      function animate() {
+        dog.style.backgroundPosition = frames[currentFrame];
+        currentFrame = (currentFrame + 1) % frames.length;
+      }
+
+      setInterval(animate, 200);
+    </script>
+  </body>
+</html>
