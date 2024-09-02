@@ -1,0 +1,216 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-color: #0188ff;
+    display: flex;
+    z-index: 100;
+    overflow: hidden;
+  }
+  
+  .container-tree {
+    position: absolute;
+    display: flex;
+    width: 20%;
+    height: 60%;
+    top: 10%;
+    left: 2%;
+  }
+  
+  #tree {
+    position: absolute;
+    background: url("imgs/53251.gif") no-repeat -1720px -1335px;
+    width: 68px;
+    height: 149px;
+    scale: 4;
+    left: 40%;
+    top: 30%;
+    z-index: 200;
+  }
+  
+  .container-bush {
+    position: absolute;
+    display: flex;
+    width: 7%;
+    height: 9vh;
+    right: 15%;
+    bottom: 30%;
+    z-index: 200;
+  }
+  
+  #bush {
+    position: absolute;
+    background: url("./imgs/53251.gif") no-repeat -1814px -1409px;
+    width: 58px;
+    height: 46px;
+    scale: 3.5;
+    bottom: 125%;
+  }
+  
+  .container-grass {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 30vh;
+    bottom: 0;
+    z-index: 300;
+    background-color: #8c7405;
+  }
+  
+  #grass-1 {
+    position: absolute;
+    background: url("./imgs/53251.gif") -1455px -1228px;
+    width: 50px;
+    height: 80px;
+    scale: 6;
+    top: 83%;
+    left: 5%;
+  }
+  
+  #grass-2 {
+    position: absolute;
+    background: url("./imgs/53251.gif") -1455px -1228px;
+    width: 50px;
+    height: 80px;
+    scale: 5;
+    top: 83%;
+    left: 19%;
+    bottom: 10%;
+  }
+  
+  #grass-3 {
+    position: absolute;
+    background: url("./imgs/53251.gif") -1455px -1228px;
+    width: 50px;
+    height: 80px;
+    scale: 5;
+    top: 83%;
+    left: 35%;
+  }
+  
+  #grass-4 {
+    position: absolute;
+    background: url("./imgs/53251.gif") -1455px -1228px;
+    width: 50px;
+    height: 80px;
+    scale: 5;
+    top: 83%;
+    left: 49%;
+  }
+  
+  #grass-5 {
+    position: absolute;
+    background: url("./imgs/53251.gif") -1455px -1228px;
+    width: 50px;
+    height: 80px;
+    scale: 5;
+    top: 83%;
+    left: 63%;
+  }
+  
+  #grass-6 {
+    position: absolute;
+    background: url("./imgs/53251.gif") -1455px -1228px;
+    width: 50px;
+    height: 80px;
+    scale: 5;
+    top: 83%;
+    left: 77%;
+  }
+  
+  #grass-7 {
+    position: absolute;
+    background: url("./imgs/53251.gif") -1455px -1229px;
+    width: 50px;
+    height: 80px;
+    scale: 5;
+    top: 83%;
+    left: 91%;
+  }
+  
+  #upper-grass-1 {
+    position: absolute;
+    background: url("./imgs/Screenshot\ 2024-09-02\ at\ 10.00.11-Photoroom.png")
+      no-repeat -44px -152px;
+    width: 539px;
+    height: 79px;
+    scale: 2;
+    z-index: 400;
+    left: 10%;
+    bottom: 90%;
+  }
+  
+  #upper-grass-2 {
+    position: absolute;
+    background: url("./imgs/Screenshot\ 2024-09-02\ at\ 10.00.11-Photoroom.png")
+      no-repeat -23px -152px;
+    width: 539px;
+    height: 79px;
+    scale: 2;
+    z-index: 399;
+    left: 70%;
+    bottom: 90%;
+  }
+  
+  .container-score {
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+    z-index: 400;
+    width: 100%;
+    height: 25vh;
+    bottom: 0;
+  }
+  
+  .round-bullets {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 7%;
+    height: 90%;
+    bottom: 8%;
+    left: 17%;
+    gap: 10%;
+  }
+  .round {
+    background: url("./imgs/53251.gif") no-repeat -2290px -1110px;
+    width: 48px;
+    height: 16px;
+    scale: 2;
+  }
+  
+  #bullets {
+    position: absolute;
+    background: url("./imgs/53251.gif") no-repeat -2476px -1084px;
+    width: 58px;
+    height: 42px;
+    scale: 2;
+    bottom: 10%;
+  }
+  
+  #life {
+    position: absolute;
+    background: url("./imgs/53251.gif") no-repeat -2292px -1141px;
+    width: 234px;
+    height: 42px;
+    scale: 2;
+    bottom: 17%;
+  }
+  
+  #score {
+    position: absolute;
+    background: url("./imgs/53251.gif") no-repeat -2351px -1085px;
+    width: 106px;
+    height: 42px;
+    scale: 2;
+    bottom: 17%;
+    right: 17%;
+  }
+  
