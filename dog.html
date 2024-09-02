@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Duck Hunt Dog Animation</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #2e4148;
+      }
+      #gameArea {
+        width: 416px;
+        height: 379px;
+        position: relative;
+        overflow: hidden;
+      }
+      #dog {
+        width: 60px;
+        height: 80px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: url("./dog_sprite/duckhunt_various_sheet-2.png") no-repeat -280px -192px;
+        transform: translateX(-50%) scale(6);
+        image-rendering: pixelated;
+        transition: bottom 0.5s ease-in-out, height 0.5s ease-in-out;
+      }
+      .area {
+        position: absolute;
+        bottom: 0;
+        background-color: green;
+        width: 500px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="gameArea">
+      <div class="area"></div>
+      <div id="dog"></div>
+    </div>
+
+    <script>
+      const dog = document.getElementById("dog");
+      const frames = [
+        { position: "-5px 3px", width: 55, height: 80 }, // Frame 1
+        { position: "-66px 3px", width: 55, height: 80 }, // Frame 2
+        { position: "-125px 3px", width: 55, height: 80 }, // Frame 3
+        { position: "-184px 3px", width: 55, height: 80 }, // Frame 4
+        { position: "-5px 3px", width: 55, height: 80 }, // Frame 5
+        { position: "-66px 3px", width: 55, height: 80 }, // Frame 6
+        { position: "-125px 3px", width: 55, height: 80 }, // Frame 7
+        { position: "-5px -60px", width: 55, height: 80 }, // Frame tail up stop
+        { position: "-5px -60px", width: 55, height: 80 }, // Frame tail up stop
+        { position: "-5px -60px", width: 55, height: 80 }, // Frame tail up stop
+        { position: "-5px -60px", width: 55, height: 80 }, // Frame tail up stop
+
+        { position: "-74px -60px", width: 55, height: 80 }, // start jump
+        { position: "-135px -67px", width: 55, height: 80 }, // end jump
+
+        //  { position: "-302px -18px", width: 50, height: 1 }, // Frame 18
+      ];
+
+      let currentFrame = 0;
+
+      function animate() {
+        if (currentFrame < frames.length) {
+          dog.style.backgroundPosition = frames[currentFrame].position;
+          dog.style.width = frames[currentFrame].width + "px";
+          dog.style.height = frames[currentFrame].height + "px";
+
+          if (currentFrame === frames.length - 1) {
+            dog.style.bottom = "120px"; // jump height
+            setTimeout(() => {
+              dog.style.bottom = "0"; // back to 0
+            }, 500); // time jump
+          }
+
+          currentFrame++;
+          setTimeout(animate, 200);
+        }
+      }
+
+      animate();
+    </script>
+  </body>
+</html>
