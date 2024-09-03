@@ -1,0 +1,36 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: #87ceeb; /* Sky blue background */
+}
+#gameContainer {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  margin: 20px auto;
+  border: 2px solid #000;
+  background-color: #228b22; /* Green ground */
+}
+
+.duck {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: #f08080; /* Red duck */
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#gameInfo {
+  margin-top: 20px;
+}
+.info {
+  display: inline-block;
+  margin: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}

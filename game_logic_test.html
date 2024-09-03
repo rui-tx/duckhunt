@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="game_logic_test.css" />
+    <title>Duck Hunt Game</title>
+  </head>
+  <body onload="startGame()">
+    <div id="gameContainer">
+      <div class="info"><span id="intro-text">-</span></div>
+      <div id="duck" class="duck"></div>
+    </div>
+
+    <div id="gameInfo">
+      <div class="info">Round: <span id="round">-</span></div>
+      <div class="info">Round Step: <span id="roundStep">-</span></div>
+      <div class="info">
+        Shots Remaining: <span id="shotsRemaining">-</span>
+      </div>
+      <div class="info">
+        Ducks Remaining: <span id="ducksRemaining">-</span>
+      </div>
+      <div class="info">Time Left: <span id="timeLeft">-</span>s</div>
+      <div class="info">Score: <span id="score">-</span></div>
+      <div class="info">Last shot took: <span id="lastShotTime">-</span>ms</div>
+      <div class="info">GameState: <span id="gameState">-</span></div>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>
