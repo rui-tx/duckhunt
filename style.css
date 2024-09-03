@@ -19,55 +19,43 @@
   overflow: hidden;
 }
 
-.container-sky {
-  position: relative;
-  width: 100%;
-  height: 70vh;
-  top: 0;
-}
-
 .container-tree {
-  position: relative;
+  position: absolute;
   display: flex;
   width: 20%;
-  height: 100%;
+  height: 60%;
+  top: 10%;
   left: 2%;
 }
 
 #tree {
   position: absolute;
-  display: flex;
-  align-items: flex-start;
   background: url("imgs/53251.gif") no-repeat -1720px -1335px;
   width: 68px;
   height: 149px;
-  scale: 4.5;
+  scale: 4;
   left: 40%;
-  top: 48%;
+  top: 30%;
   z-index: 200;
 }
 
 .container-bush {
   position: absolute;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 14%;
-  height: 15vh;
-  right: 25%;
+  width: 7%;
+  height: 9vh;
+  right: 15%;
+  bottom: 30%;
   z-index: 200;
-  top: 73%;
 }
 
 #bush {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
   background: url("./imgs/53251.gif") no-repeat -1814px -1409px;
   width: 58px;
   height: 46px;
   scale: 3.5;
+  bottom: 125%;
 }
 
 .container-grass {
@@ -95,7 +83,7 @@
   background: url("./imgs/53251.gif") -1455px -1228px;
   width: 50px;
   height: 80px;
-  scale: 6;
+  scale: 5;
   top: 83%;
   left: 19%;
   bottom: 10%;
@@ -106,7 +94,7 @@
   background: url("./imgs/53251.gif") -1455px -1228px;
   width: 50px;
   height: 80px;
-  scale: 6;
+  scale: 5;
   top: 83%;
   left: 35%;
 }
@@ -116,7 +104,7 @@
   background: url("./imgs/53251.gif") -1455px -1228px;
   width: 50px;
   height: 80px;
-  scale: 6;
+  scale: 5;
   top: 83%;
   left: 49%;
 }
@@ -126,7 +114,7 @@
   background: url("./imgs/53251.gif") -1455px -1228px;
   width: 50px;
   height: 80px;
-  scale: 6;
+  scale: 5;
   top: 83%;
   left: 63%;
 }
@@ -136,7 +124,7 @@
   background: url("./imgs/53251.gif") -1455px -1228px;
   width: 50px;
   height: 80px;
-  scale: 6;
+  scale: 5;
   top: 83%;
   left: 77%;
 }
@@ -146,8 +134,8 @@
   background: url("./imgs/53251.gif") -1455px -1229px;
   width: 50px;
   height: 80px;
-  scale: 6;
-  top: 90%;
+  scale: 5;
+  top: 83%;
   left: 91%;
 }
 
@@ -171,7 +159,7 @@
   height: 79px;
   scale: 2;
   z-index: 399;
-  left: 60%;
+  left: 70%;
   bottom: 90%;
 }
 
@@ -193,232 +181,88 @@
   align-items: center;
   width: 7%;
   height: 90%;
-  bottom: 0%;
+  bottom: 8%;
   left: 17%;
+  gap: 10%;
 }
-
 .round {
-  position: absolute;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
   background-color: black;
-  width: 110px;
-  height: 50px;
-  border-radius: 5px;
-  top: 30%;
-}
-
-#round-r {
-  position: absolute;
-  font-family: var(--principal-font);
-  color: #85d414;
-  font-size: 30px;
-  left: 6px;
+  width: 48px;
+  height: 16px;
+  scale: 2;
 }
 
 #round-value {
   position: absolute;
   font-family: var(--principal-font);
   color: #85d414;
-  font-size: 30px;
-  right: 0;
+  font-size: 20px;
 }
 
-#container-bullets {
+#bullets {
   position: absolute;
-  display: flex;
-  background-color: black;
-  width: 110px;
-  height: 80px;
+  background: url("./imgs/53251.gif") no-repeat -2476px -1084px;
+  width: 58px;
+  height: 42px;
+  scale: 2;
   bottom: 10%;
-  border-radius: 5px;
-  border: 4px solid #85d414;
-}
-
-.bullets {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 40px;
-}
-
-#bullet-1 {
-  display: flex;
-  position: absolute;
-  background: url("./imgs/0.png") no-repeat;
-  width: 10px;
-  height: 18px;
-  left: 10%;
-  scale: 2;
-  bottom: 0;
-}
-
-#bullet-2 {
-  display: flex;
-  position: absolute;
-  background: url("./imgs/0.png") no-repeat;
-  width: 10px;
-  height: 18px;
-  left: 45%;
-  bottom: 0;
-  scale: 2;
-}
-
-#bullet-3 {
-  display: flex;
-  position: absolute;
-  background: url("./imgs/0.png") no-repeat;
-  width: 10px;
-  height: 18px;
-  right: 10%;
-  scale: 2;
-  bottom: 0;
-}
-
-.container-shot {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  font-family: var(--principal-font);
-  color: #67b6fa;
-  font-size: 25px;
-  width: 100%;
-  height: 84px;
-  bottom: 8px;
 }
 
 #life {
   position: absolute;
-  display: flex;
-  background-color: black;
-  border: 2px solid #85d414;
-  border-radius: 2.5px;
+  background: url("./imgs/53251.gif") no-repeat -2292px -1141px;
   width: 234px;
   height: 42px;
   scale: 2;
   bottom: 17%;
 }
 
-#hit {
+#score {
   position: absolute;
-  font-family: var(--principal-font);
-  color: #85d414;
-  font-size: 13px;
-  letter-spacing: 1.3px;
-  top: 10%;
-  left: 3%;
-}
-
-.container-time {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  bottom: 0;
-  left: 63.5%;
-  transform: translate(-50%);
-  font-weight: bold;
-  font-size: 16px;
-  letter-spacing: 1.5px;
-  color: #67b6fa;
-}
-
-.container-ducks {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  height: 50%;
-  right: 0;
-}
-
-#duck-1,
-#duck-2,
-#duck-3,
-#duck-4,
-#duck-5,
-#duck-6,
-#duck-7,
-#duck-8,
-#duck-9,
-#duck-10 {
-  position: absolute;
-  display: flex;
-  background-image: url(./imgs/duck.png);
-  background-size: cover;
-  width: 23px;
-  height: 20px;
-
-  scale: 0.8;
-}
-
-#duck-1 {
-  left: 0;
-}
-#duck-2 {
-  left: 9%;
-}
-#duck-3 {
-  left: 18%;
-}
-
-#duck-4 {
-  left: 27%;
-}
-#duck-5 {
-  left: 36%;
-}
-#duck-6 {
-  left: 45%;
-}
-#duck-7 {
-  left: 54%;
-}
-#duck-8 {
-  left: 63%;
-}
-#duck-9 {
-  left: 72%;
-}
-#duck-10 {
-  left: 81%;
-}
-
-#container-score {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  background-color: black;
-  border: 4px solid #85d414;
-  border-radius: 5px;
-  width: 230px;
-  height: 84px;
-  bottom: 8.9%;
+  background: url("./imgs/53251.gif") no-repeat -2351px -1085px;
+  width: 106px;
+  height: 42px;
+  scale: 2;
+  bottom: 17%;
   right: 17%;
-  color: white;
 }
 
-.score-number {
-  position: absolute;
-  width: 90%;
-  height: 50%;
-  top: 5px;
-  font-family: var(--principal-font);
-  font-size: 38px;
-  left: 3px;
+/******************************  DOG CSS **************************************************/
+@keyframes dogWalk {
+  0% {
+    background-position: 0px 0px;
+  }
+  25% {
+    background-position: -60px 0px;
+  }
+  50% {
+    background-position: -120px 0px;
+  }
+  75% {
+    background-position: -180px 0px;
+  }
 }
 
-.round-score {
-  position: absolute;
-  width: 82%;
-  height: 50%;
-  bottom: 0;
-  font-family: var(--principal-font);
-  font-size: 38px;
-  right: 0;
+@keyframes dogMove {
+  from {
+    left: 120px;
+  }
+  to {
+    left: calc(120px + 600px);
+  }
 }
+
+#dog {
+  width: 60px;
+  height: 58px;
+  position: absolute;
+  bottom: 200px;
+  z-index: 2000;
+  scale: 4;
+  background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
+  animation: dogWalk 0.8s steps(1) infinite, dogMove 5s linear forwards;
+}
+
+/********************************************************************************/
