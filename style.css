@@ -319,12 +319,13 @@
   justify-content: center;
   align-items: center;
   bottom: 0;
-  left: 63.5%;
+  left: 53%;
   transform: translate(-50%);
   font-weight: bold;
   font-size: 16px;
   letter-spacing: 1.5px;
   color: #67b6fa;
+
 }
 
 .container-ducks {
