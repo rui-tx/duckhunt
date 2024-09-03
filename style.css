@@ -463,7 +463,6 @@
   }
 }
 
-
 @media screen and (max-width: 430px) and (max-height: 932px) {
   #upper-grass-2 {
     display: none;
@@ -553,7 +552,7 @@
   z-index: 9000;
   scale: 4;
   background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
-  animation: dogWalk 0.8s steps(1) infinite, dogMove 5s linear forwards;
+  /* animation: dogWalk 0.8s steps(1) infinite, dogMove 5s linear forwards; */
 }
 
 /********************************************************************************/
