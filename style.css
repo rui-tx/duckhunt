@@ -337,6 +337,10 @@
   right: 0;
 }
 
+.red {
+  background-color: red;
+}
+
 #duck-1,
 #duck-2,
 #duck-3,
@@ -462,7 +466,6 @@
     left: 32%;
   }
 }
-
 
 @media screen and (max-width: 430px) and (max-height: 932px) {
   #upper-grass-2 {

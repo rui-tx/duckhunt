@@ -3,12 +3,13 @@ const GAME_MAX_MISSED_DUCKS = [4, 3, 2, 1, 0]; // 5 levels of missed ducks
 const GAME_TIME_IN_MS = 1200000;
 const GAME_ROUND_MAX_TIME_DUCK_STAYS_IN_MS = 5000;
 const GAME_ROUND_NUMBER_OF_SHOOTS = 3;
-const DUCK_ELEMENT_NAME = "duck";
+const DUCK_ELEMENT_NAME = "score";
 
 const GAME_VARS = {
   gameState: "idle", // idle, round, duck_flew_away, end
   round: 1,
   currentStep: 0,
+  duckRoundArray: [],
   shotsRemaining: GAME_ROUND_NUMBER_OF_SHOOTS,
   ducksRemaining: GAME_NUMBER_OF_DUCKS,
   ducksShotOnRound: 0,
@@ -30,7 +31,7 @@ const getMaxMissedDucks = function () {
 };
 
 const shoot = function (duckHitted) {
-  if (GAME_VARS.shotsRemaining <= 1) {
+  if (GAME_VARS.shotsRemaining < 1) {
     console.log("No shots remaining!");
     //GAME_VARS.gameState = "idle";
     //updateGameText();
@@ -42,6 +43,8 @@ const shoot = function (duckHitted) {
 
   if (!duckHitted) {
     console.log("Player missed the shot...");
+    const bulletToRemove = `bullet-${GAME_VARS.shotsRemaining + 1}`;
+    document.getElementById(bulletToRemove).outerHTML = "";
     updateGameText();
     return;
   }
@@ -49,6 +52,7 @@ const shoot = function (duckHitted) {
   console.log("Duck hit!");
   GAME_VARS.gameState = "idle";
   GAME_VARS.score++;
+  GAME_VARS.duckRoundArray.push(1);
   GAME_VARS.ducksRemaining--;
   GAME_VARS.ducksShotOnRound++;
   GAME_VARS.totalDucksShotted++;
@@ -57,13 +61,18 @@ const shoot = function (duckHitted) {
 };
 
 const updateGameText = function () {
-  document.getElementById("shotsRemaining").innerHTML =
-    GAME_VARS.shotsRemaining;
-  document.getElementById("ducksRemaining").innerHTML =
-    GAME_VARS.ducksRemaining;
-  document.getElementById("score").innerHTML = GAME_VARS.score;
-  document.getElementById("gameState").innerHTML = GAME_VARS.gameState;
-  document.getElementById("lastShotTime").innerHTML = GAME_VARS.lastShotTime;
+  document.getElementById("round-value").innerHTML = GAME_VARS.round;
+  document.getElementById("score-number").innerHTML = GAME_VARS.score
+    .toString()
+    .padStart(6, "0");
+
+  // add simple red background for now
+  for (let i = 1; i <= GAME_VARS.duckRoundArray.length; i++) {
+    if (GAME_VARS.duckRoundArray[i - 1] === 1) {
+      const node = document.getElementById(`duck-${i}`);
+      node.classList.add("red");
+    }
+  }
 };
 
 document.onclick = function (event) {
@@ -71,11 +80,31 @@ document.onclick = function (event) {
     console.warn("Game is not in 'round' state, ignoring click");
     return;
   }
-
   event.target.id === DUCK_ELEMENT_NAME ? shoot(true) : shoot(false);
 };
 
+const updateDuckLimitContainer = function () {
+  document.getElementById("container-duck-target").innerHTML = "";
+
+  // six initial ducks, 4 | per duck
+  for (let i = 1; i <= 6; i++) {
+    for (let j = 1; j <= 4; j++) {
+      const node = document.createElement("span");
+      node.innerHTML = `|`;
+      document.getElementById("container-duck-target").appendChild(node);
+    }
+  }
+
+  for (let i = 1; i <= getMaxMissedDucks(); i++) {
+    const node = document.createElement("span");
+    node.innerHTML = `|`;
+    document.getElementById("container-duck-target").appendChild(node);
+  }
+};
+
 const startGame = async function () {
+  updateDuckLimitContainer();
+
   if (GAME_VARS.currentStep === GAME_NUMBER_OF_DUCKS) {
     GAME_VARS.gameState = "idle";
     const maxMissedDucks = getMaxMissedDucks();
@@ -91,17 +120,21 @@ const startGame = async function () {
       updateGameText();
 
       const waitTime = 3000;
-      document.getElementById(
-        "intro-text"
-      ).innerHTML = `Dog animation laughing for ${waitTime} miliseconds...`;
+      console.log(`Dog animation laughing for ${waitTime} miliseconds...`);
       return;
     }
 
-    document.getElementById("intro-text").innerHTML = "NEW ROUND!";
+    console.log("NEW ROUND!");
     GAME_VARS.round += 1;
     GAME_VARS.currentStep = 0;
     GAME_VARS.ducksShotOnRound = 0;
     GAME_VARS.ducksRemaining = GAME_NUMBER_OF_DUCKS;
+
+    for (let i = 1; i <= GAME_NUMBER_OF_DUCKS; i++) {
+      const node = document.getElementById(`duck-${i}`);
+      node.classList.remove("red");
+    }
+    GAME_VARS.duckRoundArray = [];
     updateGameText();
     await sleep(3000);
   }
@@ -109,16 +142,14 @@ const startGame = async function () {
   // only shows dog walk and jump animation when is the first step round
   if (GAME_VARS.currentStep === 0) {
     const waitTime = 3000;
-    document.getElementById(
-      "intro-text"
-    ).innerHTML = `Initial animation for ${waitTime} miliseconds...`;
+    console.log(`Initial animation for ${waitTime} miliseconds...`);
     await sleep(3000);
     await startRound();
 
     if (GAME_VARS.gameState === "duck_flew_away") {
-      document.getElementById(
-        "intro-text"
-      ).innerHTML = `Dog animation laughing when duck flies away for ${waitTime} miliseconds...`;
+      console.log(
+        `Dog animation laughing when duck flies away for ${waitTime} miliseconds...`
+      );
       await sleep(waitTime);
 
       await startGame();
@@ -131,9 +162,9 @@ const startGame = async function () {
   // if duck flew away then start game again
   if (GAME_VARS.gameState === "duck_flew_away") {
     const waitTime = 3000;
-    document.getElementById(
-      "intro-text"
-    ).innerHTML = `Dog animation laughing when duck flies away for ${waitTime} miliseconds...`;
+    console.log(
+      `Dog animation laughing when duck flies away for ${waitTime} miliseconds...`
+    );
     await sleep(waitTime);
 
     await startGame();
@@ -144,25 +175,27 @@ const startRound = async function () {
   // only shows dog showing the shot ducks when is not the first step round and game is idle
   if (GAME_VARS.currentStep > 0 && GAME_VARS.gameState === "idle") {
     const waitTime = 2000;
-    document.getElementById(
-      "intro-text"
-    ).innerHTML = `Dog animation when showing ducks shot for ${waitTime} miliseconds...`;
+    console.log(
+      `Dog animation when showing ducks shot for ${waitTime} miliseconds...`
+    );
     await sleep(waitTime);
   }
 
   GAME_VARS.currentStep += 1;
-  document.getElementById("intro-text").innerHTML = "Round is on";
+
+  // update bullets div
+  document.getElementById("bullet-list").innerHTML = "";
+  for (let i = 1; i <= GAME_ROUND_NUMBER_OF_SHOOTS; i++) {
+    const node = document.createElement("div");
+    node.id = `bullet-${i}`;
+    document.getElementById("bullet-list").appendChild(node);
+  }
+
+  console.log("Round is on");
 
   GAME_VARS.shotsRemaining = GAME_ROUND_NUMBER_OF_SHOOTS;
   GAME_VARS.gameState = "round";
-
-  document.getElementById("round").innerHTML = GAME_VARS.round;
-  document.getElementById("roundStep").innerHTML = GAME_VARS.currentStep;
-  document.getElementById("shotsRemaining").innerHTML =
-    GAME_VARS.shotsRemaining;
-  document.getElementById("score").innerHTML = GAME_VARS.score;
-  document.getElementById("gameState").innerHTML = GAME_VARS.gameState;
-  document.getElementById("maxMissedDucks").innerHTML = getMaxMissedDucks();
+  document.getElementById("round-value").innerHTML = GAME_VARS.round;
 
   const startTime = Date.now();
 
@@ -180,11 +213,11 @@ const startRound = async function () {
 
     if (timeElapsedInMs >= GAME_ROUND_MAX_TIME_DUCK_STAYS_IN_MS) {
       GAME_VARS.gameState = "duck_flew_away";
-
+      GAME_VARS.duckRoundArray.push(0);
       const waitTime = 3000;
-      document.getElementById(
-        "intro-text"
-      ).innerHTML = `Duck animation when flying away for ${waitTime} miliseconds...`;
+      console.log(
+        `Duck animation when flying away for ${waitTime} miliseconds...`
+      );
       await sleep(waitTime);
 
       updateScore();
@@ -199,9 +232,9 @@ const startRound = async function () {
       break;
     }
 
-    document.getElementById("timeLeft").innerText = `${Math.floor(
-      (GAME_VARS.timeRemaining - timeElapsedInMs) / 1000
-    )}`;
+    // document.getElementById("timeLeft").innerText = `${Math.floor(
+    //   (GAME_VARS.timeRemaining - timeElapsedInMs) / 1000
+    // )}`;
 
     await sleep(100);
   }
