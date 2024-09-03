@@ -423,7 +423,7 @@
   right: 0;
 }
 
-@media screen and (max-width: 1024px), screen and (max-height: 1366px) {
+@media screen and (max-width: 1024px) and (max-height: 1366px)  {
   #grass-1,
   #grass-2,
   #grass-3,
@@ -453,8 +453,9 @@
     bottom: 1%;
   }
   #container-score {
-    right: 0%;
-    bottom: 9.9%;
+    scale: 0.8;
+    right: -7%;
+    bottom: 5.9%;
   }
 
   #life {
