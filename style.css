@@ -461,3 +461,41 @@
     left: 32%;
   }
 }
+
+/******************************  DOG CSS **************************************************/
+@keyframes dogWalk {
+  0% {
+    background-position: 0px 0px;
+  }
+  25% {
+    background-position: -60px 0px;
+  }
+  50% {
+    background-position: -120px 0px;
+  }
+  75% {
+    background-position: -180px 0px;
+  }
+}
+
+@keyframes dogMove {
+  from {
+    left: 120px;
+  }
+  to {
+    left: calc(120px + 600px);
+  }
+}
+
+#dog {
+  width: 60px;
+  height: 58px;
+  position: absolute;
+  bottom: 200px;
+  z-index: 9000;
+  scale: 4;
+  background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
+  animation: dogWalk 0.8s steps(1) infinite, dogMove 5s linear forwards;
+}
+
+/********************************************************************************/
