@@ -125,6 +125,7 @@ const startGame = async function () {
     }
 
     console.log("NEW ROUND!");
+
     GAME_VARS.round += 1;
     GAME_VARS.currentStep = 0;
     GAME_VARS.ducksShotOnRound = 0;
@@ -134,23 +135,40 @@ const startGame = async function () {
       const node = document.getElementById(`duck-${i}`);
       node.classList.remove("red");
     }
-    GAME_VARS.duckRoundArray = [];
-    updateGameText();
+    GAME_VARS.duckRoundArray;
+
+    const roundTag = document.getElementById("round-tag");
+    roundTag.style.display = "block";
+
     await sleep(3000);
+    roundTag.style.display = "none";
   }
 
   // only shows dog walk and jump animation when is the first step round
   if (GAME_VARS.currentStep === 0) {
+    // const tag = document.getElementById("round-tags");
+    // tag.style.display = "block";
+
     const waitTime = 3000;
+    const roundTag = document.getElementById("round-tag");
+    roundTag.style.display = "block";
+
     console.log(`Initial animation for ${waitTime} miliseconds...`);
     await sleep(3000);
+
+    roundTag.style.display = "none";
     await startRound();
 
     if (GAME_VARS.gameState === "duck_flew_away") {
       console.log(
         `Dog animation laughing when duck flies away for ${waitTime} miliseconds...`
       );
+
+      dog.style.display = "block";
+      dogLaugh();
       await sleep(waitTime);
+      stopDogLaugh();
+      dog.style.display = "none";
 
       await startGame();
     }
@@ -165,7 +183,12 @@ const startGame = async function () {
     console.log(
       `Dog animation laughing when duck flies away for ${waitTime} miliseconds...`
     );
+
+    dog.style.display = "block";
+    dogLaugh();
     await sleep(waitTime);
+    stopDogLaugh();
+    dog.style.display = "none";
 
     await startGame();
   }
@@ -214,11 +237,16 @@ const startRound = async function () {
     if (timeElapsedInMs >= GAME_ROUND_MAX_TIME_DUCK_STAYS_IN_MS) {
       GAME_VARS.gameState = "duck_flew_away";
       GAME_VARS.duckRoundArray.push(0);
+
       const waitTime = 3000;
+      const flyTag = document.getElementById("fly-tag");
+      flyTag.style.display = "block";
+
       console.log(
         `Duck animation when flying away for ${waitTime} miliseconds...`
       );
       await sleep(waitTime);
+      flyTag.style.display = "none";
 
       updateScore();
       updateGameText();
@@ -226,9 +254,16 @@ const startRound = async function () {
     }
 
     if (GAME_VARS.timeRemaining - timeElapsedInMs <= 0) {
+      const waitTime = 3000;
+      const gameOver = document.getElementById("game-over-id");
+      gameOver.style.display = "block";
+
       console.log("Game over! Reason: Timer ran out");
       GAME_VARS.gameState = "end";
       updateGameText();
+
+      await sleep(waitTime);
+      gameOver.style.display = "none";
       break;
     }
 

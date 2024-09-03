@@ -79,5 +79,5 @@ function stopDogLaugh() {
 }
 
 //startDogAnimation();
-dogLaugh();
-setTimeout(stopDogLaugh, 5000);
+//dogLaugh();
+//setTimeout(stopDogLaugh, 5000);
