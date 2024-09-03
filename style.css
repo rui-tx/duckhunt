@@ -319,7 +319,7 @@
   justify-content: center;
   align-items: center;
   bottom: 0;
-  left: 63.5%;
+  left: 53%;
   transform: translate(-50%);
   font-weight: bold;
   font-size: 16px;
@@ -421,4 +421,43 @@
   font-family: var(--principal-font);
   font-size: 38px;
   right: 0;
+}
+
+@media screen and (max-width: 1024px), screen and (max-height: 1366px) {
+  #grass-1,
+  #grass-2,
+  #grass-3,
+  #grass-4,
+  #grass-5,
+  #grass-6,
+  #grass-7 {
+    height: 70px;
+  }
+
+  #tree {
+    top: 56%;
+    left: 63%;
+  }
+
+  .container-bush {
+    top: 79%;
+    right: 17%;
+  }
+
+  .container-score {
+    scale: 0.8;
+  }
+
+  .round-bullets {
+    left: 0%;
+    bottom: 1%;
+  }
+  #container-score {
+    right: 0%;
+    bottom: 9.9%;
+  }
+
+  #life {
+    left: 32%;
+  }
 }
