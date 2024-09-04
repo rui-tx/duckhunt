@@ -127,6 +127,6 @@ function dogCatchBird() {
   }, 4000);
 }
 
-dogCatchBird();
+//dogCatchBird();
 //startDogAnimation();
-//dogLaugh();
+dogLaugh();
