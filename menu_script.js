@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const pressStartBtn = document.getElementById('press-start-btn');
     const selector = document.querySelector('.selector');
-    const topScoreElement = document.getElementById('var-top-score'); // Get the top score element
-    const menuContainer = document.getElementById('menu-container'); // Get the menu container
+    const topScoreElement = document.getElementById('var-top-score');
+    const menuContainer = document.getElementById('menu-container');
 
     let topScore = 12000;
 

@@ -36,6 +36,17 @@ body {
     opacity: 0.5;
 }
 
+.header-image {
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    margin-left: 2rem;
+    margin-right: 2rem;
+    background: url('imgs/menu/menu_background.svg') no-repeat center center;
+    background-size: contain;
+}
+
 #press-start-btn {
     position: absolute;
     padding: 1rem 2rem;
@@ -44,7 +55,7 @@ body {
     border: none;
     cursor: pointer;
     transform: translate(-50%, -50%);
-    transition: background-color 0.3s ease;
+    /*transition: background-color 0.3s ease;*/
     background-color: orange;
     font-family: 'CustomFont', serif;
     color: white;
@@ -57,27 +68,6 @@ body {
     color: black;
 }
 
-.header-image {
-    grid-area: header;
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-    margin-left: 2rem;
-    margin-right: 2rem;
-    background: url('imgs/menu/menu_background.svg') no-repeat center center;
-    background-size: contain;
-}
-
-.selector {
-    position: absolute;
-    margin-right: 1.5rem;
-    width: 1.8rem;
-    height: 1.8rem;
-    background-color: white;
-    opacity: 0;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
 .btn {
     align-self: end;
     text-align: left;
@@ -86,20 +76,25 @@ body {
     border: none;
     cursor: pointer;
     font-family: 'CustomFont', serif;
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: orange;
 }
 
-.btn-a {
-    grid-area: btn-a;
+.label {
+    align-self: end;
+    padding-left: 1rem;
+    font-size: 2rem;
+    color: orange;
 }
 
-.btn-b {
-    grid-area: btn-b;
-}
-
-.btn-c {
-    grid-area: btn-c;
+.selector {
+    position: absolute;
+    margin-right: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 /* Hover effects to move the selector to grid areas */
@@ -118,11 +113,16 @@ body {
     opacity: 1; /* Make visible */
 }
 
-.label {
-    align-self: end;
-    padding-left: 1rem;
-    font-size: 1.8rem;
-    color: orange;
+.btn-a {
+    grid-area: btn-a;
+}
+
+.btn-b {
+    grid-area: btn-b;
+}
+
+.btn-c {
+    grid-area: btn-c;
 }
 
 .label-a {
@@ -250,7 +250,7 @@ body {
     }
 }
 
-@media (orientation: landscape) and (min-width: 576px) and (max-width: 767px) {    
+@media (orientation: landscape) and (min-width: 577px) and (max-width: 767px) {    
     .selector {
         width: 0.8rem;
         height: 0.8rem;
