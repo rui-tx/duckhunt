@@ -1,0 +1,715 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+:root {
+  --principal-font: "Press Start 2P", system-ui;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: #0188ff;
+  display: flex;
+  z-index: 100;
+  overflow: hidden;
+}
+.container-sky {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  top: 0;
+}
+
+
+.round-tags{
+  position: absolute;
+  display: flex;
+  width: 10%;
+  height: 25%;
+  left: 50%;
+  transform: translate(-50%);
+  top: 25%;
+  display: none;
+}
+
+.round-tag{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--principal-font);
+  color: white;
+  font-size: 30px;
+  background-color: black;
+  border-radius: 20px;
+  border: 4px solid white;
+  gap: 20px;
+}
+
+.perfect-tag{
+  position: absolute;
+  display: flex;
+  width: 17%;
+  height: 25%;
+  left: 50%;
+  transform: translate(-50%);
+  top: 25%;
+  display: none;
+}
+
+.tag-perfect{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--principal-font);
+  color: white;
+  font-size: 30px;
+  background-color: black;
+  border-radius: 20px;
+  border: 4px solid white;
+  gap: 20px;
+}
+
+.good-tag{
+  position: absolute;
+  display: flex;
+  width: 17%;
+  height: 25%;
+  left: 50%;
+  transform: translate(-50%);
+  top: 25%;
+  display: none;
+}
+
+#tag-good{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--principal-font);
+  color: white;
+  font-size: 30px;
+  background-color: black;
+  border-radius: 20px;
+  border: 4px solid white;
+  gap: 20px;
+}
+
+.fly-tag{
+  position: absolute;
+  display: flex;
+  width: 17%;
+  height: 18%;
+  left: 50%;
+  transform: translate(-50%);
+  top: 25%;
+  display: none;
+}
+
+#fly-away-tag{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--principal-font);
+  color: white;
+  font-size: 30px;
+  background-color: black;
+  border-radius: 20px;
+  border: 4px solid white;
+  gap: 20px;
+}
+
+.game-over{
+  position: absolute;
+  display: flex;
+  width: 17%;
+  height: 25%;
+  left: 50%;
+  transform: translate(-50%);
+  top: 25%;
+  display: none;
+}
+
+#game-over{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--principal-font);
+  color: white;
+  font-size: 30px;
+  background-color: black;
+  border-radius: 20px;
+  border: 4px solid white;
+  gap: 20px;
+}
+
+>>>>>>> main
+.container-tree {
+  position: relative;
+  display: flex;
+  width: 20%;
+  height: 100%;
+  left: 2%;
+}
+#tree {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  background: url("imgs/53251.gif") no-repeat -1720px -1335px;
+  width: 68px;
+  height: 149px;
+  scale: 4.5;
+  left: 40%;
+  top: 48%;
+  z-index: 200;
+}
+.container-bush {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14%;
+  height: 15vh;
+  right: 25%;
+  z-index: 200;
+  top: 73%;
+}
+#bush {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background: url("./imgs/53251.gif") no-repeat -1814px -1409px;
+  width: 58px;
+  height: 46px;
+  scale: 3.5;
+}
+.container-grass {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 30vh;
+  bottom: 0;
+  z-index: 300;
+  background-color: #8c7405;
+}
+#grass-1 {
+  position: absolute;
+  background: url("./imgs/53251.gif") -1455px -1228px;
+  width: 50px;
+  height: 80px;
+  scale: 6;
+  top: 83%;
+  left: 5%;
+}
+#grass-2 {
+  position: absolute;
+  background: url("./imgs/53251.gif") -1455px -1228px;
+  width: 50px;
+  height: 80px;
+  scale: 6;
+  top: 83%;
+  left: 19%;
+  bottom: 10%;
+}
+#grass-3 {
+  position: absolute;
+  background: url("./imgs/53251.gif") -1455px -1228px;
+  width: 50px;
+  height: 80px;
+  scale: 6;
+  top: 83%;
+  left: 35%;
+}
+#grass-4 {
+  position: absolute;
+  background: url("./imgs/53251.gif") -1455px -1228px;
+  width: 50px;
+  height: 80px;
+  scale: 6;
+  top: 83%;
+  left: 49%;
+}
+#grass-5 {
+  position: absolute;
+  background: url("./imgs/53251.gif") -1455px -1228px;
+  width: 50px;
+  height: 80px;
+  scale: 6;
+  top: 83%;
+  left: 63%;
+}
+#grass-6 {
+  position: absolute;
+  background: url("./imgs/53251.gif") -1455px -1228px;
+  width: 50px;
+  height: 80px;
+  scale: 6;
+  top: 83%;
+  left: 77%;
+}
+#grass-7 {
+  position: absolute;
+  background: url("./imgs/53251.gif") -1455px -1229px;
+  width: 50px;
+  height: 80px;
+  scale: 6;
+  top: 90%;
+  left: 91%;
+}
+#upper-grass-1 {
+  position: absolute;
+  background: url("./imgs/Screenshot\ 2024-09-02\ at\ 10.00.11-Photoroom.png")
+    no-repeat -44px -152px;
+  width: 539px;
+  height: 79px;
+  scale: 2;
+  z-index: 400;
+  left: 10%;
+  bottom: 90%;
+}
+#upper-grass-2 {
+  position: absolute;
+  background: url("./imgs/Screenshot\ 2024-09-02\ at\ 10.00.11-Photoroom.png")
+    no-repeat -23px -152px;
+  width: 539px;
+  height: 79px;
+  scale: 2;
+  z-index: 399;
+  left: 60%;
+  bottom: 90%;
+}
+.container-score {
+  display: flex;
+  position: absolute;
+  justify-content: space-around;
+  z-index: 400;
+  width: 100%;
+  height: 25vh;
+  bottom: 0;
+}
+.round-bullets {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 7%;
+  height: 90%;
+  bottom: 0%;
+  left: 17%;
+}
+.round {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: black;
+  width: 110px;
+  height: 50px;
+  border-radius: 5px;
+  top: 30%;
+}
+#round-r {
+  position: absolute;
+  font-family: var(--principal-font);
+  color: #85d414;
+  font-size: 30px;
+  left: 6px;
+}
+#round-value {
+  position: absolute;
+  font-family: var(--principal-font);
+  color: #85d414;
+  font-size: 30px;
+  right: 0;
+}
+#container-bullets {
+  position: absolute;
+  display: flex;
+  background-color: black;
+  width: 110px;
+  height: 80px;
+  bottom: 10%;
+  border-radius: 5px;
+  border: 4px solid #85d414;
+}
+.bullets {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+}
+#bullet-1 {
+  display: flex;
+  position: absolute;
+  background: url("./imgs/0.png") no-repeat;
+  width: 10px;
+  height: 18px;
+  left: 10%;
+  scale: 2;
+  bottom: 0;
+}
+#bullet-2 {
+  display: flex;
+  position: absolute;
+  background: url("./imgs/0.png") no-repeat;
+  width: 10px;
+  height: 18px;
+  left: 45%;
+  bottom: 0;
+  scale: 2;
+}
+#bullet-3 {
+  display: flex;
+  position: absolute;
+  background: url("./imgs/0.png") no-repeat;
+  width: 10px;
+  height: 18px;
+  right: 10%;
+  scale: 2;
+  bottom: 0;
+}
+.container-shot {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  font-family: var(--principal-font);
+  color: #67b6fa;
+  font-size: 25px;
+  width: 100%;
+  height: 84px;
+  bottom: 8px;
+}
+#life {
+  position: absolute;
+  display: flex;
+  background-color: black;
+  border: 2px solid #85d414;
+  border-radius: 2.5px;
+  width: 234px;
+  height: 42px;
+  scale: 2;
+  bottom: 17%;
+}
+#hit {
+  position: absolute;
+  font-family: var(--principal-font);
+  color: #85d414;
+  font-size: 13px;
+  letter-spacing: 1.3px;
+  top: 10%;
+  left: 3%;
+}
+.container-time {
+  position: fixed;
+  display: flex;
+  justify-content: flex-start;
+  bottom: 0;
+  right: 0;
+  width: 68%;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  color: #67b6fa;
+}
+.container-ducks {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 50%;
+  right: 0;
+}
+
+
+.red {
+  background-color: red;
+}
+
+#duck-1,
+#duck-2,
+#duck-3,
+#duck-4,
+#duck-5,
+#duck-6,
+#duck-7,
+#duck-8,
+#duck-9,
+#duck-10 {
+  position: absolute;
+  display: flex;
+  background-image: url(./imgs/duck.png);
+  background-size: cover;
+  width: 23px;
+  height: 20px;
+  scale: 0.8;
+}
+#duck-1 {
+  left: 0;
+}
+#duck-2 {
+  left: 9%;
+}
+#duck-3 {
+  left: 18%;
+}
+#duck-4 {
+  left: 27%;
+}
+#duck-5 {
+  left: 36%;
+}
+#duck-6 {
+  left: 45%;
+}
+#duck-7 {
+  left: 54%;
+}
+#duck-8 {
+  left: 63%;
+}
+#duck-9 {
+  left: 72%;
+}
+#duck-10 {
+  left: 81%;
+}
+#container-score {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  border: 4px solid #85d414;
+  border-radius: 5px;
+  width: 230px;
+  height: 84px;
+  bottom: 8.9%;
+  right: 17%;
+  color: white;
+}
+.score-number {
+  position: absolute;
+  width: 90%;
+  height: 50%;
+  top: 5px;
+  font-family: var(--principal-font);
+  font-size: 38px;
+  left: 3px;
+}
+.round-score {
+  position: absolute;
+  width: 82%;
+  height: 50%;
+  bottom: 0;
+  font-family: var(--principal-font);
+  font-size: 38px;
+  right: 0;
+}
+@media screen and (max-width: 1024px) and (max-height: 1366px) {
+  #grass-1,
+  #grass-2,
+  #grass-3,
+  #grass-4,
+  #grass-5,
+  #grass-6,
+  #grass-7 {
+    height: 70px;
+  }
+  #tree {
+    top: 65%;
+    left: 63%;
+  }
+  .container-bush {
+    top: 85%;
+    right: 17%;
+  }
+  .container-score {
+    scale: 0.8;
+  }
+  .round-bullets {
+    left: 0%;
+    bottom: 1%;
+  }
+  #container-score {
+    scale: 0.8;
+    right: -7%;
+    bottom: 5.9%;
+  }
+  #life {
+    left: 32%;
+  }
+  .container-grass {
+    height: 25vh;
+  }
+}
+@media screen and (max-width: 430px) and (max-height: 932px) {
+  #upper-grass-2 {
+    display: none;
+  }
+  #tree {
+    scale: 3;
+    left: 111%;
+  }
+  #bush {
+    scale: 2;
+  }
+  .container-grass {
+    scale: 0.7;
+  }
+  .container-bush {
+    top: 85%;
+  }
+  #grass-1,
+  #grass-2,
+  #grass-3,
+  #grass-4,
+  #grass-5,
+  #grass-6,
+  #grass-7 {
+    scale: 8;
+    top: 90%;
+  }
+  .container-score {
+    scale: 0.7;
+    bottom: 12%;
+    left: -8%;
+  }
+  #life {
+    left: 50%;
+  }
+  #container-score {
+    bottom: 53%;
+  }
+  .round {
+    top: 3%;
+  }
+  #container-bullets {
+    bottom: 7%;
+  }
+}
+/******************************  NORMAL SCREEN DOG CSS **************************************************/
+@keyframes dogWalk {
+  0% {
+    background-position: 0px 0px;
+  }
+  25% {
+    background-position: -60px 0px;
+  }
+  50% {
+    background-position: -120px 0px;
+  }
+  75% {
+    background-position: -180px 0px;
+  }
+}
+@keyframes dogMove {
+  from {
+    left: 120px;
+  }
+  to {
+    left: calc(120px + 1000px);
+  }
+}
+#dog {
+  display: none;
+  width: 60px;
+  height: 58px;
+  position: absolute;
+  bottom: 200px;
+  z-index: 9000;
+  scale: 4;
+  background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
+}
+/********************************************************************************************************/
+/********************************  IPAD SCREEN DOG CSS **************************************************/
+@keyframes dogWalk {
+  0% {
+    background-position: 0px 0px;
+  }
+  25% {
+    background-position: -60px 0px;
+  }
+  50% {
+    background-position: -120px 0px;
+  }
+  75% {
+    background-position: -180px 0px;
+  }
+}
+@keyframes dogMove {
+  from {
+    left: 120px;
+  }
+  to {
+    left: calc(120px + 500px);
+  }
+}
+#ipad-dog {
+  display: none;
+  width: 60px;
+  height: 58px;
+  position: absolute;
+  bottom: 200px;
+  z-index: 9000;
+  scale: 4;
+  background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
+}
+/********************************************************************************************************/
+/********************************  MOBILE SCREEN DOG CSS **************************************************/
+@keyframes dogWalk {
+  0% {
+    background-position: 0px 0px;
+  }
+  25% {
+    background-position: -60px 0px;
+  }
+  50% {
+    background-position: -120px 0px;
+  }
+  75% {
+    background-position: -180px 0px;
+  }
+}
+@keyframes dogMove {
+  from {
+    left: -50px;
+  }
+  to {
+    left: 50%;
+  }
+}
+#mobile-dog {
+  display: none;
+  width: 60px;
+  height: 58px;
+  position: absolute;
+  bottom: 200px;
+  z-index: 9000;
+  scale: 4;
+  background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
+}
