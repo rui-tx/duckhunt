@@ -674,7 +674,6 @@
   .perfect-tag {
     width: 25%;
     height: 15%;
-    
   }
 
   .tag-perfect {
@@ -684,7 +683,6 @@
   .good-tag {
     width: 25%;
     height: 15%;
-    
   }
 
   #tag-good {
@@ -694,7 +692,6 @@
   .fly-tag {
     width: 48%;
     height: 13%;
-    
   }
 
   #fly-away-tag {
@@ -817,7 +814,6 @@
   background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
 }
 
-
 /****************************************** DUCKS *******************************************************/
 
 #duck {
@@ -828,4 +824,32 @@
   transform: scale(4);
   background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
   z-index: 200;
+}
+
+/****************************************** FLASH ANIMATION *******************************************************/
+.flash {
+  -webkit-animation: flash linear 150ms 20;
+  animation: flash linear 150ms 20;
+}
+@-webkit-keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
 }
