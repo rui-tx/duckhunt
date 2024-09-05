@@ -21,8 +21,8 @@ const GAME_VARS = {
 
 const ANIMATIONS_TIME_IN_MS = {
   startDogAnimation: 7000,
-  dogCatchBird: 5000,
-  dogLaugh: 5000,
+  dogCatchBird: 3000,
+  dogLaugh: 4000,
 };
 
 const getMaxMissedDucks = function () {
@@ -53,6 +53,8 @@ const shoot = function (duckHitted) {
   }
 
   console.log("Duck hit!");
+  const bulletToRemove = `bullet-${GAME_VARS.shotsRemaining + 1}`;
+  document.getElementById(bulletToRemove).outerHTML = "";
   GAME_VARS.gameState = "idle";
   GAME_VARS.score++;
   GAME_VARS.duckRoundArray.push(1);
