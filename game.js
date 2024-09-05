@@ -260,6 +260,8 @@ const startRound = async function () {
 
       const waitTime = 3000;
       const flyTag = document.getElementById("fly-tag");
+      const skyBackground = document.getElementById("container-sky");
+      skyBackground.classList.add("fly-away-sky-bg-color");
       flyTag.style.display = "block";
 
       console.log(
@@ -267,6 +269,7 @@ const startRound = async function () {
       );
       await sleep(waitTime);
       flyTag.style.display = "none";
+      skyBackground.classList.remove("fly-away-sky-bg-color");
 
       updateScore();
       updateGameText();
