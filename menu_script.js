@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         topScoreElement.textContent = `TOP SCORE = ${topScore}`;
     }
 
-    // Example: You can update the score like this:
+    // Update the score like this:
     updateTopScore(12000); 
 
     // Function to play the menu sound and hide the "Press Start" button
