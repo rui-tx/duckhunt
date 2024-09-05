@@ -162,23 +162,23 @@
   gap: 20px;
 }
 
->>>>>>>main .container-tree {
+.container-tree {
   position: relative;
   display: flex;
   width: 20%;
-  height: 100%;
+  height: 70%;
   left: 2%;
 }
 #tree {
   position: absolute;
   display: flex;
   align-items: flex-start;
-  background: url("imgs/53251.gif") no-repeat -1720px -1335px;
-  width: 68px;
-  height: 149px;
-  scale: 4.5;
+  background: url("imgs/tree.png");
+  width: 90%;
+  height: 100%;
+  scale: 1.5;
   left: 40%;
-  top: 48%;
+  top: 25%;
   z-index: 200;
 }
 .container-bush {
@@ -197,10 +197,10 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  background: url("./imgs/53251.gif") no-repeat -1814px -1409px;
-  width: 58px;
-  height: 46px;
-  scale: 3.5;
+  background: url("./imgs/bush.png");
+  width: 100%;
+  height: 100%;
+  scale: 1;
 }
 .container-grass {
   position: absolute;
@@ -709,4 +709,17 @@
   z-index: 9000;
   scale: 4;
   background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
+}
+
+
+/****************************************** DUCKS *******************************************************/
+
+#duck {
+  width: 34px;
+  height: 31px;
+  position: absolute;
+  transition: transform 0.5s linear;
+  transform: scale(4);
+  background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
+  z-index: 200;
 }
