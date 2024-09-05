@@ -138,7 +138,7 @@ function dogLaugh() {
 
   switch (deviceType) {
     case "mobile":
-      initialBottom = 280;
+      initialBottom = 200;
       laughJumpHeight = 100;
       finalJumpHeight = 40;
       break;
@@ -157,7 +157,7 @@ function dogLaugh() {
   let isLaughing = false;
   dog.style.display = "block";
   dog.style.left = "40%";
-  dog.style.zIndex = "100";
+  dog.style.zIndex = "-100";
   dog.style.bottom = `${initialBottom}px`;
 
   function toggleLaughSprite() {
@@ -199,8 +199,8 @@ function dogCatchBird() {
 
   switch (deviceType) {
     case "mobile":
-      jumpHeight = 100;
-      initialBottom = 280;
+      jumpHeight = 130;
+      initialBottom = 190;
       break;
     case "ipad":
       jumpHeight = 100;
