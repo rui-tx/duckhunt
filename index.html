@@ -6,9 +6,27 @@
     <title>Duck Hunt</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body onload="startGame()">
     <div class="container">
       <div class="container-sky">
+        <div id="round-tag" class="round-tags">
+          <div class="round-tag">ROUND <span id="tag-round">1</span></div>
+        </div>
+        <div class="perfect-tag">
+          <div class="tag-perfect">
+            PERFECT!! <span id="perfect-score">10000</span>
+          </div>
+        </div>
+        <div class="good-tag">
+          <div id="tag-good">GOOD!!</div>
+        </div>
+        <div id="fly-tag" class="fly-tag">
+          <div id="fly-away-tag">FLY AWAY!!</div>
+        </div>
+        <div id="game-over-id" class="game-over">
+          <div>GAME OVER</div>
+        </div>
+
         <div class="container-tree">
           <div class="tree" id="tree"></div>
         </div>
@@ -37,13 +55,13 @@
           <div class="round-bullets">
             <div class="round">
               <span id="round-r">R=</span>
-              <span id="round-value">1</span>
+              <span id="round-value">-</span>
             </div>
             <div id="container-bullets">
-              <div class="bullets">
-                <div id="bullet-1"></div>
+              <div id="bullet-list" class="bullets">
+                <!-- <div id="bullet-1"></div>
                 <div id="bullet-2"></div>
-                <div id="bullet-3"></div>
+                <div id="bullet-3"></div> -->
               </div>
               <div class="container-shot">
                 <span class="shot">SHOT</span>
@@ -64,25 +82,13 @@
               <span id="duck-9"></span>
               <span id="duck-10"></span>
             </div>
-            <div class="container-time">
+            <div id="container-duck-target" class="container-time">
+              <!-- <div class="duck-group"> 
               <span>|</span>
               <span>|</span>
               <span>|</span>
               <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
-              <span>|</span>
+              </div> -->
             </div>
           </div>
           <div id="container-score">
@@ -97,5 +103,6 @@
       </div>
     </div>
     <script src="./dog_sprite/dog.js"></script>
+    <script src="game.js"></script>
   </body>
 </html>
