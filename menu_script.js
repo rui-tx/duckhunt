@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initially disable all clicks and interactions in the menu
     menuContainer.classList.add('inactive');
 
-
     pressStartBtn.addEventListener('click', playMenuSound);
 
      // Function to move selector to the hovered button
