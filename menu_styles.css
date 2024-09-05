@@ -46,9 +46,10 @@ body {
     transform: translate(-50%, -50%);
     transition: background-color 0.3s ease;
     background-color: orange;
-    color: white;
     font-family: 'CustomFont', serif;
+    color: white;
     font-size: 1.5rem;
+
 }
 
 #press-start-btn:hover {

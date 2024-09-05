@@ -197,4 +197,4 @@ function dogCatchBird() {
   }, 4000);
 }
 
-dogLaugh();
+//dogLaugh();
