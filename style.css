@@ -314,8 +314,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 7%;
-  height: 90%;
+  width: 29%;
+  height: 100%;
   bottom: 0%;
   left: 17%;
 }
@@ -654,20 +654,25 @@
   }
   .container-score {
     scale: 0.7;
-    bottom: 12%;
+
     left: -8%;
   }
   #life {
+    top: 32%;
     left: 50%;
   }
   #container-score {
-    bottom: 53%;
+    bottom: -13%;
   }
   .round {
-    top: 3%;
+    top: 90%;
   }
   #container-bullets {
-    bottom: 7%;
+    bottom: 35%;
+  }
+
+  .round-bullets {
+    left: -20%;
   }
 
   .round-tags {
