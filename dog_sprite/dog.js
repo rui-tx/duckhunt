@@ -36,6 +36,7 @@ function startDogAnimation() {
   const duration = adjustAnimationForDevice();
   dog.style.display = "block";
   dog.style.left = "10%";
+  dog.style.bottom = "80%";
   dog.style.animation = `dogWalk 0.8s steps(1) infinite, dogMove ${duration}s linear forwards`;
   setTimeout(() => {
     if (!isJumping) {
@@ -60,16 +61,16 @@ function jump() {
   let jumpHeight, initialBottom;
   switch (deviceType) {
     case "mobile":
-      jumpHeight = 250;
-      initialBottom = 100;
+      jumpHeight = 400;
+      initialBottom = 280;
       break;
     case "ipad":
-      jumpHeight = 350;
-      initialBottom = 150;
+      jumpHeight = 550;
+      initialBottom = 380;
       break;
     default:
-      jumpHeight = 450;
-      initialBottom = 200;
+      jumpHeight = 550;
+      initialBottom = 380;
   }
   let currentLeft = dog.style.left;
   dog.style.transition = "bottom 0.3s ease-out";
