@@ -148,6 +148,28 @@ function moveDuck() {
     duck.style.top = `${yPos}px`;
 }
 
+function startDuckFallAnimation() {
+    let fallVelocity = 5;
+    const containerHeight = container.clientHeight;
+    const duckHeight = duck.clientHeight;
+
+    const fallInterval = setInterval(() => {
+        let currentY = parseFloat(duck.style.top) || 0;
+        
+        if (currentY < containerHeight) {
+            currentY += fallVelocity;
+            duck.style.top = `${currentY}px`;
+
+            if (duck.style.transform === 'scaleX(1)') {
+                duck.style.transform = 'scaleX(-1) scale(3)';
+            } else {
+                clearInterval(fallInterval);
+                duck.style.display = 'none';
+            }
+        }
+    }, 50);
+}
+
 function flipDuck(flip) {
     const flipScale = flip ? 'scaleX(-1)' : 'scaleX(1)';
     duck.style.transition = 'transform 0.05s';
