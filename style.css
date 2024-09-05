@@ -44,6 +44,7 @@
   font-family: var(--principal-font);
   color: white;
   font-size: 30px;
+  text-align: center;
   background-color: black;
   border-radius: 20px;
   border: 4px solid white;
@@ -72,6 +73,7 @@
   font-family: var(--principal-font);
   color: white;
   font-size: 30px;
+  text-align: center;
   background-color: black;
   border-radius: 20px;
   border: 4px solid white;
@@ -100,6 +102,7 @@
   font-family: var(--principal-font);
   color: white;
   font-size: 30px;
+  text-align: center;
   background-color: black;
   border-radius: 20px;
   border: 4px solid white;
@@ -128,6 +131,7 @@
   font-family: var(--principal-font);
   color: white;
   font-size: 30px;
+  text-align: center;
   background-color: black;
   border-radius: 20px;
   border: 4px solid white;
@@ -158,6 +162,7 @@
   font-size: 30px;
   background-color: black;
   border-radius: 20px;
+  text-align: center;
   border: 4px solid white;
   gap: 20px;
   display: none;
@@ -174,7 +179,8 @@
   position: absolute;
   display: flex;
   align-items: flex-start;
-  background: url("imgs/tree.png");
+  background: url("imgs/tree.png") no-repeat;
+  background-size: contain;
   width: 80%;
   height: 100%;
   scale: 1.5;
@@ -198,7 +204,8 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  background: url("./imgs/bush.png");
+  background: url("./imgs/bush.png") no-repeat; 
+  background-size: contain;
   width: 100%;
   height: 100%;
   scale: 1;
@@ -540,9 +547,10 @@
     height: 70px;
   }
   #tree {
-    top: 67%;
+    top: 75%;
     left: 23%;
     width: 120%;
+    scale: 2;
   }
   .container-bush {
     top: 87%;
@@ -627,7 +635,7 @@
   #tree {
     scale: 1;
     left: -30%;
-    top: 50%;
+    top: 55%;
     width: 280%;
   }
   #bush {
