@@ -3,7 +3,7 @@ const GAME_MAX_MISSED_DUCKS = [4, 3, 2, 1, 0]; // 5 levels of missed ducks
 const GAME_TIME_IN_MS = 1200000;
 const GAME_ROUND_MAX_TIME_DUCK_STAYS_IN_MS = 5000;
 const GAME_ROUND_NUMBER_OF_SHOOTS = 3;
-const DUCK_ELEMENT_NAME = "score";
+const DUCK_ELEMENT_NAME = "duck";
 
 const GAME_VARS = {
   gameState: "idle", // idle, round, duck_flew_away, end
