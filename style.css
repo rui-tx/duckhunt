@@ -175,11 +175,11 @@
   display: flex;
   align-items: flex-start;
   background: url("imgs/tree.png");
-  width: 90%;
+  width: 80%;
   height: 100%;
   scale: 1.5;
   left: 40%;
-  top: 25%;
+  top: 30%;
   z-index: 200;
 }
 .container-bush {
@@ -187,11 +187,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 14%;
+  width: 12%;
   height: 15vh;
   right: 25%;
   z-index: 200;
-  top: 73%;
+  top: 75%;
 }
 #bush {
   display: flex;
@@ -283,7 +283,7 @@
   width: 539px;
   height: 79px;
   scale: 2;
-  z-index: 400;
+  z-index: 100; 
   left: 10%;
   bottom: 90%;
 }
@@ -294,9 +294,10 @@
   width: 539px;
   height: 79px;
   scale: 2;
-  z-index: 399;
+  z-index: 99;
   left: 60%;
   bottom: 90%;
+  overflow: hidden;
 }
 .container-score {
   display: flex;
@@ -539,12 +540,14 @@
     height: 70px;
   }
   #tree {
-    top: 65%;
-    left: 63%;
+    top: 67%;
+    left: 23%;
+    width: 120%;
   }
   .container-bush {
-    top: 85%;
+    top: 87%;
     right: 17%;
+    width: 20%;
   }
   .container-score {
     scale: 0.8;
@@ -622,17 +625,22 @@
     display: none;
   }
   #tree {
-    scale: 3;
-    left: 111%;
+    scale: 1;
+    left: -30%;
+    top: 50%;
+    width: 280%;
   }
   #bush {
-    scale: 2;
+    scale: 0.6;
+    width: 100%;
   }
   .container-grass {
     scale: 0.7;
   }
   .container-bush {
-    top: 85%;
+    top: 87%;
+    width: 45%;
+    right: 0;
   }
   #grass-1,
   #grass-2,
