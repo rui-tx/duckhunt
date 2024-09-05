@@ -107,14 +107,34 @@ const startGame = async function () {
 
   if (GAME_VARS.currentStep === GAME_NUMBER_OF_DUCKS) {
     GAME_VARS.gameState = "idle";
-    const maxMissedDucks = getMaxMissedDucks();
 
+    GAME_VARS.duckRoundArray = GAME_VARS.duckRoundArray.sort((a, b) => b - a);
+
+    for (let i = 1; i <= GAME_NUMBER_OF_DUCKS; i++) {
+      const node = document.getElementById(`duck-${i}`);
+      node.classList.remove("red");
+
+      if (GAME_VARS.duckRoundArray[i - 1] === 1) {
+        node.classList.add("red");
+      }
+    }
+
+    console.log("Showing ducks shot and not shot on round...");
+    await sleep(5000);
+    GAME_VARS.duckRoundArray = [];
+
+    for (let i = 1; i <= GAME_NUMBER_OF_DUCKS; i++) {
+      const node = document.getElementById(`duck-${i}`);
+      node.classList.remove("red");
+    }
+
+    const maxMissedDucks = getMaxMissedDucks();
     // check if player goes to next round
     const numberOfTotalMissedDucks =
       GAME_NUMBER_OF_DUCKS - GAME_VARS.ducksShotOnRound;
-    if (numberOfTotalMissedDucks >= maxMissedDucks) {
+    if (numberOfTotalMissedDucks > maxMissedDucks) {
       console.log(
-        `Game over! Reason: Player missed ${maxMissedDucks} or more ducks: ${numberOfTotalMissedDucks}`
+        `Game over! Reason: Player missed more then ${maxMissedDucks} ducks: ${numberOfTotalMissedDucks}`
       );
       GAME_VARS.gameState = "end";
       updateGameText();
@@ -133,12 +153,6 @@ const startGame = async function () {
     GAME_VARS.currentStep = 0;
     GAME_VARS.ducksShotOnRound = 0;
     GAME_VARS.ducksRemaining = GAME_NUMBER_OF_DUCKS;
-
-    for (let i = 1; i <= GAME_NUMBER_OF_DUCKS; i++) {
-      const node = document.getElementById(`duck-${i}`);
-      node.classList.remove("red");
-    }
-    GAME_VARS.duckRoundArray = [];
 
     const roundTag = document.getElementById("round-tag");
     roundTag.style.display = "block";
@@ -227,7 +241,10 @@ const startRound = async function () {
       break;
     }
 
-    if (timeElapsedInMs >= GAME_ROUND_MAX_TIME_DUCK_STAYS_IN_MS) {
+    if (
+      timeElapsedInMs >= GAME_ROUND_MAX_TIME_DUCK_STAYS_IN_MS ||
+      GAME_VARS.shotsRemaining < 1
+    ) {
       GAME_VARS.gameState = "duck_flew_away";
       GAME_VARS.duckRoundArray.push(0);
 
