@@ -16,31 +16,63 @@ function adjustAnimationForDevice() {
     case "mobile":
       scale = 3;
       bottom = 100;
-      duration = 3;
+      duration = 6;
       break;
     case "ipad":
       scale = 4;
       bottom = 150;
-      duration = 4;
+      duration = 6;
       break;
     default:
       scale = 4;
       bottom = 200;
-      duration = 5;
+      duration = 6;
   }
   dog.style.scale = scale;
   dog.style.bottom = `${bottom}px`;
   return duration;
 }
 
+/**************************DOG SOUNDS***************************** */
+
+const dogSound = new Audio("sound/dog_intro.mp3");
+const dogBarkSound = new Audio("sound/dog_bark.mp3");
+const catchBird = new Audio("sound/dog_catch_bird.mp3");
+const laugh = new Audio("sound/dog_laugh.mp3");
+const gunshot = new Audio("sound/gun.mp3");
+let barkCount = 0;
+
+function playRapidBarks() {
+  if (barkCount < 3) {
+    dogBarkSound.currentTime = 0;
+    dogBarkSound.play();
+    barkCount++;
+
+    setTimeout(playRapidBarks, 130);
+  } else {
+    barkCount = 0;
+  }
+}
+
+function playDogSounds() {
+  dogSound.play();
+
+  dogSound.onended = () => {
+    playRapidBarks();
+    dogSound.onended = null;
+  };
+}
+
 /**************************DOG ANIMATION***************************** */
 
 function startDogAnimation() {
+  playDogSounds();
+
   const duration = adjustAnimationForDevice();
   dog.style.display = "block";
   dog.style.left = "10%";
   dog.style.bottom = "80%";
-  dog.style.animation = `dogWalk 0.8s steps(1) infinite, dogMove ${duration}s linear forwards`;
+  dog.style.animation = `dogWalk 0.5s steps(1) infinite, dogMove ${duration}s linear forwards`;
   setTimeout(() => {
     if (!isJumping) {
       stopWalkingAndPrepareJump();
@@ -95,6 +127,10 @@ function jump() {
 /**************************DOG LAUGH***************************** */
 
 function dogLaugh() {
+  setTimeout(() => {
+    laugh.play();
+  }, 800);
+
   dog.style.backgroundPosition = "-240px -58px";
 
   const deviceType = getDeviceType();
@@ -107,8 +143,8 @@ function dogLaugh() {
       finalJumpHeight = 40;
       break;
     case "ipad":
-      initialBottom = 390;
-      laughJumpHeight = 150;
+      initialBottom = 290;
+      laughJumpHeight = 120;
       finalJumpHeight = 60;
       break;
     default:
@@ -133,27 +169,31 @@ function dogLaugh() {
     isLaughing = !isLaughing;
   }
 
-  const laughInterval = setInterval(toggleLaughSprite, 240);
+  const laughInterval = setInterval(toggleLaughSprite, 100);
 
   setTimeout(() => {
-    dog.style.transition = "bottom 2s ease-out";
+    dog.style.transition = "bottom 0.8s ease-out";
     dog.style.bottom = `${initialBottom + laughJumpHeight}px`;
   }, 10);
 
   setTimeout(() => {
-    dog.style.transition = "bottom 1s ease-in";
+    dog.style.transition = "bottom 0.5s ease-in";
     dog.style.bottom = `${initialBottom + laughJumpHeight - finalJumpHeight}px`;
-  }, 4000);
+  }, 1500);
 
   setTimeout(() => {
     clearInterval(laughInterval);
     dog.style.display = "none";
-  }, 5000);
+  }, 2000);
 }
 
 /**************************CATCH ONE BIRD***************************** */
 
 function dogCatchBird() {
+  setTimeout(() => {
+    catchBird.play();
+  }, 800);
+
   const deviceType = getDeviceType();
   let jumpHeight, initialBottom;
 
@@ -182,7 +222,7 @@ function dogCatchBird() {
   setTimeout(() => {
     dog.style.bottom = `${initialBottom + jumpHeight}px`;
     dog.style.transition = "bottom 1s ease 0.5s";
-  }, 1000);
+  }, 0);
 
   setTimeout(() => {
     dog.style.backgroundPosition = "-319px 0px";
@@ -190,11 +230,9 @@ function dogCatchBird() {
 
   setTimeout(() => {
     dog.style.bottom = `${initialBottom}px`;
-  }, 3000);
+  }, 1000);
 
   setTimeout(() => {
     dog.style.display = "none";
-  }, 4000);
+  }, 2000);
 }
-
-dogLaugh();

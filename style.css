@@ -22,8 +22,7 @@
   top: 0;
 }
 
-
-.round-tags{
+.round-tags {
   position: absolute;
   display: flex;
   width: 10%;
@@ -34,7 +33,7 @@
   display: none;
 }
 
-.round-tag{
+.round-tag {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -45,13 +44,14 @@
   font-family: var(--principal-font);
   color: white;
   font-size: 30px;
+  text-align: center;
   background-color: black;
   border-radius: 20px;
   border: 4px solid white;
   gap: 20px;
 }
 
-.perfect-tag{
+.perfect-tag {
   position: absolute;
   display: flex;
   width: 17%;
@@ -62,7 +62,7 @@
   display: none;
 }
 
-.tag-perfect{
+.tag-perfect {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -73,13 +73,14 @@
   font-family: var(--principal-font);
   color: white;
   font-size: 30px;
+  text-align: center;
   background-color: black;
   border-radius: 20px;
   border: 4px solid white;
   gap: 20px;
 }
 
-.good-tag{
+.good-tag {
   position: absolute;
   display: flex;
   width: 17%;
@@ -90,7 +91,7 @@
   display: none;
 }
 
-#tag-good{
+#tag-good {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -101,13 +102,14 @@
   font-family: var(--principal-font);
   color: white;
   font-size: 30px;
+  text-align: center;
   background-color: black;
   border-radius: 20px;
   border: 4px solid white;
   gap: 20px;
 }
 
-.fly-tag{
+.fly-tag {
   position: absolute;
   display: flex;
   width: 17%;
@@ -118,7 +120,7 @@
   display: none;
 }
 
-#fly-away-tag{
+#fly-away-tag {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -129,13 +131,14 @@
   font-family: var(--principal-font);
   color: white;
   font-size: 30px;
+  text-align: center;
   background-color: black;
   border-radius: 20px;
   border: 4px solid white;
   gap: 20px;
 }
 
-.game-over{
+.game-over {
   position: absolute;
   display: flex;
   width: 17%;
@@ -146,7 +149,7 @@
   display: none;
 }
 
-#game-over{
+#game-over {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -159,10 +162,11 @@
   font-size: 30px;
   background-color: black;
   border-radius: 20px;
+  text-align: center;
   border: 4px solid white;
   gap: 20px;
+  display: none;
 }
-
 
 .container-tree {
   position: relative;
@@ -175,12 +179,13 @@
   position: absolute;
   display: flex;
   align-items: flex-start;
-  background: url("imgs/tree.png");
-  width: 90%;
+  background: url("imgs/tree.png") no-repeat;
+  background-size: contain;
+  width: 80%;
   height: 100%;
   scale: 1.5;
   left: 40%;
-  top: 25%;
+  top: 30%;
   z-index: 200;
 }
 .container-bush {
@@ -188,18 +193,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 14%;
+  width: 12%;
   height: 15vh;
   right: 25%;
   z-index: 200;
-  top: 73%;
+  top: 75%;
 }
 #bush {
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  background: url("./imgs/bush.png");
+  background: url("./imgs/bush.png") no-repeat; 
+  background-size: contain;
   width: 100%;
   height: 100%;
   scale: 1;
@@ -284,7 +290,7 @@
   width: 539px;
   height: 79px;
   scale: 2;
-  z-index: 400;
+  z-index: 100;
   left: 10%;
   bottom: 90%;
 }
@@ -295,9 +301,10 @@
   width: 539px;
   height: 79px;
   scale: 2;
-  z-index: 399;
+  z-index: 99;
   left: 60%;
   bottom: 90%;
+  overflow: hidden;
 }
 .container-score {
   display: flex;
@@ -314,8 +321,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 7%;
-  height: 90%;
+  width: 29%;
+  height: 100%;
   bottom: 0%;
   left: 17%;
 }
@@ -446,9 +453,8 @@
   right: 0;
 }
 
-
 .red {
-  background-color: red;
+  background-image: url(./imgs/duck-red.png) !important;
 }
 
 #duck-1,
@@ -541,12 +547,15 @@
     height: 70px;
   }
   #tree {
-    top: 65%;
-    left: 63%;
+    top: 75%;
+    left: 23%;
+    width: 120%;
+    scale: 2;
   }
   .container-bush {
-    top: 85%;
+    top: 87%;
     right: 17%;
+    width: 20%;
   }
   .container-score {
     scale: 0.8;
@@ -566,23 +575,80 @@
   .container-grass {
     height: 25vh;
   }
+
+  .round-tags {
+    width: 20%;
+    height: 15%;
+  }
+
+  .round-tag {
+    font-size: 25px;
+  }
+
+  .perfect-tag {
+    width: 25%;
+    height: 15%;
+  }
+
+  .tag-perfect {
+    font-size: 25px;
+  }
+
+  .good-tag {
+    width: 25%;
+    height: 15%;
+  }
+
+  #tag-good {
+    font-size: 30px;
+  }
+
+  .fly-tag {
+    width: 28%;
+    height: 13%;
+  }
+
+  #fly-away-tag {
+    font-size: 25px;
+  }
+
+  .game-over {
+    display: flex !important;
+    width: 20%;
+    height: 20%;
+  }
+
+  #game-over {
+    font-size: 25px;
+  }
+
+  #game-over p {
+    text-align: center;
+    line-height: 2em;
+  }
 }
+
 @media screen and (max-width: 430px) and (max-height: 932px) {
   #upper-grass-2 {
     display: none;
   }
   #tree {
-    scale: 3;
-    left: 111%;
+    scale: 1;
+    left: -30%;
+    top: 55%;
+    width: 280%;
   }
   #bush {
-    scale: 2;
+    scale: 0.6;
+    width: 100%;
   }
   .container-grass {
     scale: 0.7;
   }
   .container-bush {
-    top: 85%;
+    top: 87%;
+    width: 45%;
+    right: 0;
   }
   #grass-1,
   #grass-2,
@@ -596,20 +662,75 @@
   }
   .container-score {
     scale: 0.7;
-    bottom: 12%;
+
     left: -8%;
   }
   #life {
+    top: 32%;
     left: 50%;
   }
   #container-score {
-    bottom: 53%;
+    bottom: -13%;
   }
   .round {
-    top: 3%;
+    top: 90%;
   }
   #container-bullets {
-    bottom: 7%;
+    bottom: 35%;
+  }
+
+  .round-bullets {
+    left: -20%;
+  }
+
+  .round-tags {
+    width: 20%;
+    height: 15%;
+  }
+
+  .round-tag {
+    font-size: 15px;
+  }
+
+  .perfect-tag {
+    width: 25%;
+    height: 15%;
+  }
+
+  .tag-perfect {
+    font-size: 10px;
+  }
+
+  .good-tag {
+    width: 25%;
+    height: 15%;
+  }
+
+  #tag-good {
+    font-size: 17px;
+  }
+
+  .fly-tag {
+    width: 48%;
+    height: 13%;
+  }
+
+  #fly-away-tag {
+    font-size: 18px;
+  }
+
+  .game-over {
+    width: 25%;
+    height: 20%;
+  }
+
+  #game-over {
+    font-size: 15px;
+  }
+
+  #game-over p {
+    text-align: center;
+    line-height: 2em;
   }
 }
 /******************************  NORMAL SCREEN DOG CSS **************************************************/
@@ -714,7 +835,6 @@
   background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
 }
 
-
 /****************************************** DUCKS *******************************************************/
 
 #duck {
@@ -725,4 +845,37 @@
   transform: scale(3);
   background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
   z-index: 200;
+}
+
+/****************************************** FLASH ANIMATION *******************************************************/
+.flash {
+  -webkit-animation: flash linear 150ms 20;
+  animation: flash linear 150ms 20;
+}
+@-webkit-keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/****************************************** FLY AWAY SKY *******************************************************/
+.fly-away-sky-bg-color {
+  background-color: #c694bd;
 }
