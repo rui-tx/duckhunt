@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const pressStartBtn = document.getElementById('press-start-btn');
     const selector = document.querySelector('.selector');
-    const topScoreElement = document.getElementById('top-score'); // Get the top score element
+    const topScoreElement = document.getElementById('var-top-score'); // Get the top score element
+    const menuContainer = document.getElementById('menu-container'); // Get the menu container
 
     let topScore = 12000;
 
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Example: You can update the score like this:
-    updateTopScore(13000); 
+    updateTopScore(12000); 
 
     // Function to play the menu sound and hide the "Press Start" button
     function playMenuSound() {
@@ -24,7 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Hide the "Press Start" button
         pressStartBtn.style.display = 'none';
+
+        // Activate the menu by removing the inactive class
+        menuContainer.classList.remove('inactive');
     }
+
+    // Initially disable all clicks and interactions in the menu
+    menuContainer.classList.add('inactive');
 
     pressStartBtn.addEventListener('click', playMenuSound);
 

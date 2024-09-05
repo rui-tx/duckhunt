@@ -31,6 +31,11 @@ body {
     font-family: 'CustomFont', serif;
 }
 
+#menu-container.inactive {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 #press-start-btn {
     position: absolute;
     padding: 1rem 2rem;
