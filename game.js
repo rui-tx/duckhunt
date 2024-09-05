@@ -3,7 +3,7 @@ const GAME_MAX_MISSED_DUCKS = [4, 3, 2, 1, 0]; // 5 levels of missed ducks
 const GAME_TIME_IN_MS = 1200000; // global timeout
 const GAME_ROUND_MAX_TIME_DUCK_STAYS_IN_MS = 5000;
 const GAME_ROUND_NUMBER_OF_SHOOTS = 3;
-const DUCK_ELEMENT_NAME = "score";
+const DUCK_ELEMENT_NAME = "duck";
 
 const GAME_VARS = {
   gameState: "idle", // idle, round, duck_flew_away, end
@@ -39,9 +39,6 @@ const getMaxMissedDucks = function () {
 const shoot = function (duckHitted) {
   if (GAME_VARS.shotsRemaining < 1) {
     console.log("No shots remaining!");
-    //GAME_VARS.gameState = "idle";
-    //updateGameText();
-    //startGame();
     return;
   }
 
@@ -120,8 +117,11 @@ const startGame = async function () {
     }
 
     console.log("Showing ducks shot and not shot on round...");
+    const containerDucks = document.getElementById("container-ducks");
+    containerDucks.classList.add("flash");
     await sleep(5000);
     GAME_VARS.duckRoundArray = [];
+    containerDucks.classList.remove("flash");
 
     for (let i = 1; i <= GAME_NUMBER_OF_DUCKS; i++) {
       const node = document.getElementById(`duck-${i}`);
@@ -164,6 +164,8 @@ const startGame = async function () {
   // only shows dog walk and jump animation when is the first step round
   if (GAME_VARS.currentStep === 0) {
     const roundTag = document.getElementById("round-tag");
+    const tagRound = document.getElementById("tag-round");
+    tagRound.innerHTML = GAME_VARS.round;
     roundTag.style.display = "block";
 
     console.log(
@@ -212,6 +214,10 @@ const startRound = async function () {
   }
 
   GAME_VARS.currentStep += 1;
+  // add simple flash animation for current duck
+  document
+    .getElementById(`duck-${GAME_VARS.currentStep}`)
+    .classList.add("flash");
 
   // update bullets div
   document.getElementById("bullet-list").innerHTML = "";
@@ -221,11 +227,12 @@ const startRound = async function () {
     document.getElementById("bullet-list").appendChild(node);
   }
 
-  console.log("Round is on");
+  console.log(`Round ${GAME_VARS.round} Step ${GAME_VARS.currentStep} is on`);
 
   GAME_VARS.shotsRemaining = GAME_ROUND_NUMBER_OF_SHOOTS;
   GAME_VARS.gameState = "round";
   document.getElementById("round-value").innerHTML = GAME_VARS.round;
+  document.getElementById("container-shot-text").classList.remove("flash");
 
   const startTime = Date.now();
 
@@ -245,6 +252,9 @@ const startRound = async function () {
       timeElapsedInMs >= GAME_ROUND_MAX_TIME_DUCK_STAYS_IN_MS ||
       GAME_VARS.shotsRemaining < 1
     ) {
+      // TODO this is show flash even if the player has bulelts, change please
+      document.getElementById("container-shot-text").classList.add("flash");
+
       GAME_VARS.gameState = "duck_flew_away";
       GAME_VARS.duckRoundArray.push(0);
 
