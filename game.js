@@ -58,6 +58,8 @@ const shoot = function (duckHitted) {
   }
 
   console.log("Duck hit!");
+  stopDuckFlapSound();
+
   const bulletToRemove = `bullet-${GAME_VARS.shotsRemaining + 1}`;
   document.getElementById(bulletToRemove).outerHTML = "";
   GAME_VARS.gameState = "idle";
@@ -112,7 +114,6 @@ const updateDuckLimitContainer = function () {
     }
   }
 };
-
 const startGame = async function () {
   updateDuckLimitContainer();
 
@@ -130,13 +131,16 @@ const startGame = async function () {
       }
     }
 
-    console.log("Showing ducks shot and not shot on round...");
+    const roundClearSound = new Audio("sound/round_clear.mp3");
+    roundClearSound
+      .play()
+      .catch((error) => console.error("Error playing sound:", error));
+
     const containerDucks = document.getElementById("container-ducks");
     containerDucks.classList.add("flash");
     await sleep(2000);
     GAME_VARS.duckRoundArray = [];
     containerDucks.classList.remove("flash");
-
     for (let i = 1; i <= GAME_NUMBER_OF_DUCKS; i++) {
       const node = document.getElementById(`duck-${i}`);
       node.classList.remove("red");
@@ -161,6 +165,7 @@ const startGame = async function () {
         `Dog animation laughing for ${ANIMATIONS_TIME_IN_MS.dogLaugh} miliseconds...`
       );
       sleep(ANIMATIONS_TIME_IN_MS.dogLaugh);
+
       return;
     }
     if (GAME_VARS.timeRemaining - timeElapsedInMs <= 0) {
@@ -191,10 +196,12 @@ const startGame = async function () {
     console.log(
       `Initial animation for ${ANIMATIONS_TIME_IN_MS.startDogAnimation} miliseconds...`
     );
-    //startDogAnimation();
+    startDogAnimation();
     await sleep(ANIMATIONS_TIME_IN_MS.startDogAnimation);
 
     roundTag.style.display = "none";
+    initializeGame();
+
     await startRound();
 
     if (GAME_VARS.gameState === "duck_flew_away") {
@@ -232,11 +239,14 @@ const gameOver = async function (reason) {
   const gameOverElement = document.getElementById("game-over-id");
   const gameOverDiv = document.getElementById("game-over");
   const gameOverText = document.getElementById("gameOverText");
+  await sleep(2000);
+
   gameOverElement.style.display = "block";
   gameOverDiv.style.display = "block";
   gameOverText.style.display = "block";
 
   const gameOverSound = new Audio("sound/gameOver.mp3");
+
   const playSound = () => {
     return new Promise((resolve) => {
       gameOverSound.onended = resolve;
@@ -252,11 +262,6 @@ const gameOver = async function (reason) {
   );
   await sleep(ANIMATIONS_TIME_IN_MS.dogLaugh);
 };
-
-// Helper function to create a delay
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
 const startRound = async function () {
   // only shows dog showing the shot ducks when is not the first step round and game is idle
@@ -296,6 +301,7 @@ const startRound = async function () {
     const timeElapsedInMs = Math.floor(currentTime - startTime);
 
     if (GAME_VARS.gameState !== "round") {
+      stopDuckFlapSound();
       GAME_VARS.timeRemaining -= timeElapsedInMs;
       GAME_VARS.lastShotTime = timeElapsedInMs;
       updateScore();
@@ -307,6 +313,8 @@ const startRound = async function () {
       timeElapsedInMs >= GAME_ROUND_MAX_TIME_DUCK_STAYS_IN_MS ||
       GAME_VARS.shotsRemaining < 1
     ) {
+      stopDuckFlapSound();
+
       // TODO this is show flash even if the player has bulelts, change please
       document.getElementById("container-shot-text").classList.add("flash");
 
@@ -332,6 +340,7 @@ const startRound = async function () {
     }
 
     if (GAME_VARS.timeRemaining - timeElapsedInMs <= 0) {
+      stopDuckFlapSound();
       const waitTime = 3000;
       const gameOver = document.getElementById("game-over-id");
       gameOver.style.display = "block";
