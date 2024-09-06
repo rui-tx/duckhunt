@@ -1,4 +1,5 @@
-const GAME_NUMBER_OF_DUCKS = 1;
+const topScoreElement = document.getElementById('var-top-score');
+const GAME_NUMBER_OF_DUCKS = 2;
 const GAME_MAX_MISSED_DUCKS = [0, 3, 2, 1, 0]; // 5 levels of missed ducks
 const GAME_TIME_IN_MS = 1200000; // global timeout
 const GAME_ROUND_MAX_TIME_DUCK_STAYS_IN_MS = 5000;
@@ -29,6 +30,14 @@ const ANIMATIONS_TIME_IN_MS = {
   dogCatchBird: 3000,
   dogLaugh: 4000,
 };
+
+// Function to update the score in the HTML and localStorage
+function updateTopScore(newScore) {
+  // Update localStorage with the new top score
+  localStorage.setItem('topScore', newScore);
+  // Update the HTML element with the new top score
+  topScoreElement.textContent = `TOP SCORE = ${newScore}`;
+}
 
 const getMaxMissedDucks = function () {
   if (GAME_VARS.round === 20) return GAME_MAX_MISSED_DUCKS[4];
@@ -113,6 +122,7 @@ const updateDuckLimitContainer = function () {
 };
 
 const startGame = async function () {
+  initializeGame();
   updateDuckLimitContainer();
 
   if (GAME_VARS.currentStep === GAME_NUMBER_OF_DUCKS) {
@@ -174,10 +184,7 @@ const startGame = async function () {
       sleep(ANIMATIONS_TIME_IN_MS.dogLaugh);
       return;
     }
-    if (GAME_VARS.timeRemaining - timeElapsedInMs <= 0) {
-      gameOver("Timer ran out");
-      return;
-    }
+
     console.log("NEW ROUND!");
 
     GAME_VARS.round += 1;
@@ -236,6 +243,15 @@ const gameOver = async function (reason) {
   console.log(`Game over! Reason: ${reason}`);
   GAME_VARS.gameState = "end";
   updateGameText();
+
+  // Check if the current score is higher than the stored top score
+  const currentTopScore = parseInt(localStorage.getItem('topScore')) || 0;
+
+  if (GAME_VARS.score > currentTopScore) {
+    // Update the top score in localStorage
+    updateTopScore(GAME_VARS.score);
+    console.log('New top score:', GAME_VARS.score);
+  }
 
   // Show game over elements
   const gameOverElement = document.getElementById("game-over-id");

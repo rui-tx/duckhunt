@@ -4,16 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const topScoreElement = document.getElementById('var-top-score');
     const menuContainer = document.getElementById('menu-container');
 
-    let topScore = 12000;
-
-    // Function to update the score in the HTML
-    function updateTopScore(newScore) {
-        topScore = newScore;
-        topScoreElement.textContent = `TOP SCORE = ${topScore}`;
+    // Retrieve the current top score from localStorage
+    function getTopScore() {
+    return parseInt(localStorage.getItem('topScore')) || 0;
     }
 
-    // Update the score like this:
-    updateTopScore(12000); 
+    let topScore = getTopScore();
+    topScoreElement.textContent = `TOP SCORE = ${topScore}`;
 
     // Function to play the menu sound and hide the "Press Start" button
     function playMenuSound() {
