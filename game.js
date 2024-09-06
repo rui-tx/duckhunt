@@ -124,7 +124,6 @@ const updateDuckLimitContainer = function () {
   }
 };
 const startGame = async function () {
-  initializeGame();
   updateDuckLimitContainer();
 
   if (GAME_VARS.currentStep === GAME_NUMBER_OF_DUCKS) {
