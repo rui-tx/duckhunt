@@ -3,12 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const selector = document.querySelector(".selector");
   const topScoreElement = document.getElementById("var-top-score");
   const menuContainer = document.getElementById("menu-container");
-  let topScore = 12000;
   let backgroundMusic;
 
   // Retrieve the current top score from localStorage
   function getTopScore() {
-  return parseInt(localStorage.getItem('topScore')) || 0;
+    return parseInt(localStorage.getItem("topScore")) || 0;
   }
 
   let topScore = getTopScore();
