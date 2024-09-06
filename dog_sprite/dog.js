@@ -208,7 +208,7 @@ const dogCatchBird = () => {
       initialBottom = 310;
       break;
     default:
-      jumpHeight = 200;
+      jumpHeight = 110;
       initialBottom = 300;
   }
 
