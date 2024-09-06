@@ -865,6 +865,7 @@
   transform: scale(3);
   background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
   z-index: 250;
+  visibility: hidden;
 }
 
 /****************************************** FLASH ANIMATION *******************************************************/
