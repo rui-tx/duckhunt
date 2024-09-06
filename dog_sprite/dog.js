@@ -149,8 +149,8 @@ const dogLaugh = () => {
       finalJumpHeight = 60;
       break;
     default:
-      initialBottom = 298;
-      laughJumpHeight = 100;
+      initialBottom = 289;
+      laughJumpHeight = 70;
       finalJumpHeight = 60;
   }
 
@@ -208,7 +208,7 @@ const dogCatchBird = () => {
       initialBottom = 310;
       break;
     default:
-      jumpHeight = 100;
+      jumpHeight = 200;
       initialBottom = 300;
   }
 
