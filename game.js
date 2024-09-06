@@ -61,7 +61,6 @@ const shoot = function (duckHitted) {
   const bulletToRemove = `bullet-${GAME_VARS.shotsRemaining + 1}`;
   document.getElementById(bulletToRemove).outerHTML = "";
   GAME_VARS.gameState = "idle";
-  GAME_VARS.score++;
   GAME_VARS.duckRoundArray.push(1);
   GAME_VARS.ducksRemaining--;
   GAME_VARS.ducksShotOnRound++;
@@ -133,9 +132,21 @@ const startGame = async function () {
     console.log("Showing ducks shot and not shot on round...");
     const containerDucks = document.getElementById("container-ducks");
     containerDucks.classList.add("flash");
-    await sleep(2000);
-    GAME_VARS.duckRoundArray = [];
+
+    await sleep(5000);
+    
     containerDucks.classList.remove("flash");
+
+    // Check if all ducks were shot before resetting the array
+    const allDucksShot = GAME_VARS.duckRoundArray.every((duck) => duck === 1);
+    if (allDucksShot) {
+      console.log('All ducks shot! Adding bonus...');
+      GAME_VARS.score += 10000; // Add the bonus
+      updateGameText(); // Update the score display
+    }
+
+    // Now it's safe to reset the array
+    GAME_VARS.duckRoundArray = [];
 
     for (let i = 1; i <= GAME_NUMBER_OF_DUCKS; i++) {
       const node = document.getElementById(`duck-${i}`);
@@ -143,9 +154,9 @@ const startGame = async function () {
     }
 
     const maxMissedDucks = getMaxMissedDucks();
+
     // check if player goes to next round
-    const numberOfTotalMissedDucks =
-      GAME_NUMBER_OF_DUCKS - GAME_VARS.ducksShotOnRound;
+    const numberOfTotalMissedDucks = GAME_NUMBER_OF_DUCKS - GAME_VARS.ducksShotOnRound;
     if (numberOfTotalMissedDucks > maxMissedDucks) {
       gameOver(
         `Player missed more then ${maxMissedDucks} ducks: ${numberOfTotalMissedDucks}`
@@ -203,7 +214,6 @@ const startGame = async function () {
       );
       dogLaugh();
       await sleep(ANIMATIONS_TIME_IN_MS.dogLaugh);
-
       await startGame();
     }
     return;
@@ -218,7 +228,6 @@ const startGame = async function () {
     );
     dogLaugh();
     await sleep(ANIMATIONS_TIME_IN_MS.dogLaugh);
-
     await startGame();
   }
 };
@@ -326,7 +335,6 @@ const startRound = async function () {
       flyTag.style.display = "none";
       skyBackground.classList.remove("fly-away-sky-bg-color");
 
-      updateScore();
       updateGameText();
       break;
     }
@@ -356,12 +364,18 @@ const startRound = async function () {
 
 const updateScore = function () {
   // round serves as multiplier
-  GAME_VARS.score +=
-    GAME_VARS.round * GAME_VARS.shotsRemaining + lastShotTimeInSeconds();
-};
+  const scoreForRounds1To5 = 500;
+  const scoreForRounds6To10 = 800;
 
-const lastShotTimeInSeconds = function () {
-  return Math.floor(GAME_VARS.lastShotTime / 1000);
+  // Calculate score based on the current round
+  if (GAME_VARS.round <= 5) {
+    // Rounds 1 to 5: 500 points per duck
+    GAME_VARS.score += scoreForRounds1To5;
+  } else if (GAME_VARS.round <= 10) {
+    // Rounds 6 to 10: 800 points per duck
+    GAME_VARS.score += scoreForRounds6To10;
+  }
+  console.log(`Score Updated: ${GAME_VARS.score}`);
 };
 
 function sleep(ms) {
