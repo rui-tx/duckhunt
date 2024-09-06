@@ -3,24 +3,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const selector = document.querySelector(".selector");
   const topScoreElement = document.getElementById("var-top-score");
   const menuContainer = document.getElementById("menu-container");
-  let topScore = 12000;
   let backgroundMusic;
 
-  // Function to update the score in the HTML
-  function updateTopScore(newScore) {
-    topScore = newScore;
-    topScoreElement.textContent = `TOP SCORE = ${topScore}`;
+  // Retrieve the current top score from localStorage
+  function getTopScore() {
+    return parseInt(localStorage.getItem("topScore")) || 0;
   }
 
-  // Update the score like this:
-  updateTopScore(12000);
+  let topScore = getTopScore();
+  topScoreElement.textContent = `TOP SCORE = ${topScore}`;
 
   // Function to play the menu sound and hide the "Press Start" button
   function playMenuSound() {
     // Hide the "Press Start" button
     pressStartBtn.style.display = "none";
     playPreciseAudioLoop("sound/Title.mp3", 0, 3.8);
-
     // Activate the menu by removing the inactive class
     menuContainer.classList.remove("inactive");
   }
