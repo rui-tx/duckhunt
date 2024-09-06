@@ -1,4 +1,4 @@
-const topScoreElement = document.getElementById('var-top-score');
+const topScoreElement = document.getElementById("var-top-score");
 const GAME_NUMBER_OF_DUCKS = 10;
 const GAME_MAX_MISSED_DUCKS = [4, 3, 2, 1, 0]; // 5 levels of missed ducks
 const GAME_TIME_IN_MS = 1200000; // global timeout
@@ -34,7 +34,7 @@ const ANIMATIONS_TIME_IN_MS = {
 // Function to update the score in the HTML and localStorage
 function updateTopScore(newScore) {
   // Update localStorage with the new top score
-  localStorage.setItem('topScore', newScore);
+  localStorage.setItem("topScore", newScore);
   // Update the HTML element with the new top score
   topScoreElement.textContent = `TOP SCORE = ${newScore}`;
 }
@@ -221,8 +221,8 @@ const startGame = async function () {
     console.log(
       `Initial animation for ${ANIMATIONS_TIME_IN_MS.startDogAnimation} miliseconds...`
     );
-    //startDogAnimation();
-    dogCatchBird();
+    startDogAnimation();
+
     await sleep(ANIMATIONS_TIME_IN_MS.startDogAnimation);
 
     roundTag.style.display = "none";
@@ -261,12 +261,12 @@ const gameOver = async function (reason) {
   updateGameText();
 
   // Check if the current score is higher than the stored top score
-  const currentTopScore = parseInt(localStorage.getItem('topScore')) || 0;
+  const currentTopScore = parseInt(localStorage.getItem("topScore")) || 0;
 
   if (GAME_VARS.score > currentTopScore) {
     // Update the top score in localStorage
     updateTopScore(GAME_VARS.score);
-    console.log('New top score:', GAME_VARS.score);
+    console.log("New top score:", GAME_VARS.score);
   }
 
   // Show game over elements
