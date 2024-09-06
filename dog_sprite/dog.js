@@ -4,12 +4,12 @@ const mediaQueries = {
   mobile: window.matchMedia("(max-width: 430px) and (max-height: 932px)"),
   ipad: window.matchMedia("(max-width: 1024px) and (max-height: 1366px)"),
 };
-function getDeviceType() {
+const getDeviceType = () => {
   if (mediaQueries.mobile.matches) return "mobile";
   if (mediaQueries.ipad.matches) return "ipad";
   return "desktop";
 }
-function adjustAnimationForDevice() {
+const adjustAnimationForDevice = () => {
   const deviceType = getDeviceType();
   let scale, bottom, duration;
   switch (deviceType) {
@@ -42,7 +42,7 @@ const laugh = new Audio("sound/dog_laugh.mp3");
 const gunshot = new Audio("sound/gun.mp3");
 let barkCount = 0;
 
-function playRapidBarks() {
+const playRapidBarks = () => {
   if (barkCount < 3) {
     dogBarkSound.currentTime = 0;
     dogBarkSound.play();
@@ -52,9 +52,9 @@ function playRapidBarks() {
   } else {
     barkCount = 0;
   }
-}
+};
 
-function playDogSounds() {
+const playDogSounds = () => {
   dogSound.play();
 
   dogSound.onended = () => {
@@ -65,7 +65,7 @@ function playDogSounds() {
 
 /**************************DOG ANIMATION***************************** */
 
-function startDogAnimation() {
+const startDogAnimation = () => {
   playDogSounds();
 
   const duration = adjustAnimationForDevice();
@@ -82,7 +82,7 @@ function startDogAnimation() {
 
 /**************************DOG WALK AND STOP TO JUMP***************************** */
 
-function stopWalkingAndPrepareJump() {
+const stopWalkingAndPrepareJump = () => {
   if (isJumping) return;
   isJumping = true;
   let currentLeft = window.getComputedStyle(dog).getPropertyValue("left");
@@ -94,7 +94,7 @@ function stopWalkingAndPrepareJump() {
     jump();
   }, 500);
 }
-function jump() {
+const jump = () => {
   const deviceType = getDeviceType();
   let jumpHeight, initialBottom;
   switch (deviceType) {
@@ -126,7 +126,7 @@ function jump() {
 
 /**************************DOG LAUGH***************************** */
 
-function dogLaugh() {
+const dogLaugh = () => {
   setTimeout(() => {
     laugh.play();
   }, 800);
@@ -160,7 +160,7 @@ function dogLaugh() {
   dog.style.zIndex = "-100";
   dog.style.bottom = `${initialBottom}px`;
 
-  function toggleLaughSprite() {
+  const toggleLaughSprite = () => {
     if (isLaughing) {
       dog.style.backgroundPosition = "-240px -58px";
     } else {
@@ -189,7 +189,7 @@ function dogLaugh() {
 
 /**************************CATCH ONE BIRD***************************** */
 
-function dogCatchBird() {
+const dogCatchBird = () => {
   setTimeout(() => {
     catchBird.play();
   }, 800);

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Duck Hunt</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="container-sky" class="container-sky">
+        <div id="duck"></div>
+        <div id="round-tag" class="round-tags">
+          <div class="round-tag">ROUND <span id="tag-round"></span></div>
+        </div>
+        <div class="perfect-tag">
+          <div class="tag-perfect">
+            PERFECT!! <span id="perfect-score">10000</span>
+          </div>
+        </div>
+        <div class="good-tag">
+          <div id="tag-good">GOOD!!</div>
+        </div>
+        <div id="fly-tag" class="fly-tag">
+          <div id="fly-away-tag">FLY AWAY!!</div>
+        </div>
+        <div id="game-over-id" class="game-over">
+          <div id="game-over"><p id="gameOverText">GAME OVER</p></div>
+        </div>
+
+        <div class="container-tree">
+          <div class="tree" id="tree"></div>
+        </div>
+        <div class="container-bush">
+          <div class="bush" id="bush"></div>
+        </div>
+      </div>
+
+      <div class="container-grass">
+        <div id="upper-grass-1"></div>
+        <div id="upper-grass-2"></div>
+
+        <div id="dog"></div>
+
+        <div class="all-grass">
+          <div class="grass" id="grass-1"></div>
+          <div class="grass" id="grass-2"></div>
+          <div class="grass" id="grass-3"></div>
+          <div class="grass" id="grass-4"></div>
+          <div class="grass" id="grass-5"></div>
+          <div class="grass" id="grass-6"></div>
+          <div class="grass" id="grass-7"></div>
+        </div>
+
+        <div class="container-score">
+          <div class="round-bullets">
+            <div class="round">
+              <span id="round-r">R=</span>
+              <span id="round-value">-</span>
+            </div>
+            <div id="container-bullets">
+              <div id="bullet-list" class="bullets">
+                <!-- <div id="bullet-1"></div>
+                <div id="bullet-2"></div>
+                <div id="bullet-3"></div> -->
+              </div>
+              <div class="container-shot">
+                <span id="container-shot-text" class="shot">SHOT</span>
+              </div>
+            </div>
+          </div>
+          <div id="life">
+            <div id="hit"><span>HIT</span></div>
+            <div id="container-ducks" class="container-ducks">
+              <span id="duck-1"></span>
+              <span id="duck-2"></span>
+              <span id="duck-3"></span>
+              <span id="duck-4"></span>
+              <span id="duck-5"></span>
+              <span id="duck-6"></span>
+              <span id="duck-7"></span>
+              <span id="duck-8"></span>
+              <span id="duck-9"></span>
+              <span id="duck-10"></span>
+            </div>
+            <div id="container-duck-target" class="container-time">
+              <!-- <div class="duck-group"> 
+              <span>|</span>
+              <span>|</span>
+              <span>|</span>
+              <span>|</span>
+              </div> -->
+            </div>
+          </div>
+          <div id="container-score">
+            <div class="score-number">
+              <span id="score-number">000000</span>
+            </div>
+            <div class="round-score">
+              <span id="score">SCORE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script defer src="duck.js"></script>
+
+    <script src="./dog_sprite/dog.js"></script>
+    <script src="game.js"></script>
+    <script>
+      window.onload = function () {
+        startGame();
+      };
+    </script>
+  </body>
+</html>
