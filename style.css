@@ -44,6 +44,7 @@
   font-family: var(--principal-font);
   color: white;
   font-size: 30px;
+  text-align: center;
   background-color: black;
   border-radius: 20px;
   border: 4px solid white;
@@ -72,6 +73,7 @@
   font-family: var(--principal-font);
   color: white;
   font-size: 30px;
+  text-align: center;
   background-color: black;
   border-radius: 20px;
   border: 4px solid white;
@@ -100,6 +102,7 @@
   font-family: var(--principal-font);
   color: white;
   font-size: 30px;
+  text-align: center;
   background-color: black;
   border-radius: 20px;
   border: 4px solid white;
@@ -128,6 +131,7 @@
   font-family: var(--principal-font);
   color: white;
   font-size: 30px;
+  text-align: center;
   background-color: black;
   border-radius: 20px;
   border: 4px solid white;
@@ -137,6 +141,7 @@
 .game-over {
   position: absolute;
   display: flex;
+  justify-content: center;
   width: 17%;
   height: 25%;
   left: 50%;
@@ -158,8 +163,17 @@
   font-size: 30px;
   background-color: black;
   border-radius: 20px;
+  text-align: center;
   border: 4px solid white;
   gap: 20px;
+  display: none;
+}
+.game-over p {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  line-height: 2em;
   display: none;
 }
 
@@ -174,7 +188,8 @@
   position: absolute;
   display: flex;
   align-items: flex-start;
-  background: url("imgs/tree.png");
+  background: url("imgs/tree.png") no-repeat;
+  background-size: contain;
   width: 80%;
   height: 100%;
   scale: 1.5;
@@ -198,7 +213,8 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  background: url("./imgs/bush.png");
+  background: url("./imgs/bush.png") no-repeat; 
+  background-size: contain;
   width: 100%;
   height: 100%;
   scale: 1;
@@ -283,7 +299,7 @@
   width: 539px;
   height: 79px;
   scale: 2;
-  z-index: 100; 
+  z-index: 100;
   left: 10%;
   bottom: 90%;
 }
@@ -314,8 +330,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 7%;
-  height: 90%;
+  width: 29%;
+  height: 100%;
   bottom: 0%;
   left: 17%;
 }
@@ -540,9 +556,10 @@
     height: 70px;
   }
   #tree {
-    top: 67%;
+    top: 75%;
     left: 23%;
     width: 120%;
+    scale: 2;
   }
   .container-bush {
     top: 87%;
@@ -552,6 +569,11 @@
   .container-score {
     scale: 0.8;
   }
+
+  #container-bullets {
+    position: absolute;
+  }
+
   .round-bullets {
     left: 0%;
     bottom: 1%;
@@ -562,7 +584,10 @@
     bottom: 5.9%;
   }
   #life {
-    left: 32%;
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    transform: translate(-25%);
   }
   .container-grass {
     height: 25vh;
@@ -611,6 +636,7 @@
   }
 
   #game-over {
+    display: none;
     font-size: 25px;
   }
 
@@ -627,7 +653,7 @@
   #tree {
     scale: 1;
     left: -30%;
-    top: 50%;
+    top: 55%;
     width: 280%;
   }
   #bush {
@@ -654,20 +680,25 @@
   }
   .container-score {
     scale: 0.7;
-    bottom: 12%;
+
     left: -8%;
   }
   #life {
+    top: 32%;
     left: 50%;
   }
   #container-score {
-    bottom: 53%;
+    bottom: -13%;
   }
   .round {
-    top: 3%;
+    top: 90%;
   }
   #container-bullets {
-    bottom: 7%;
+    bottom: 35%;
+  }
+
+  .round-bullets {
+    left: -20%;
   }
 
   .round-tags {
@@ -712,6 +743,7 @@
   }
 
   #game-over {
+    display: none;
     font-size: 15px;
   }
 
@@ -829,7 +861,7 @@
   height: 31px;
   position: absolute;
   transition: transform 0.5s linear;
-  transform: scale(4);
+  transform: scale(3);
   background-image: url("./dog_sprite/duckhunt_various_sheet-2.png");
   z-index: 200;
 }
@@ -860,4 +892,9 @@
   100% {
     opacity: 1;
   }
+}
+
+/****************************************** FLY AWAY SKY *******************************************************/
+.fly-away-sky-bg-color {
+  background-color: #c694bd;
 }

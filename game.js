@@ -1,9 +1,14 @@
-const GAME_NUMBER_OF_DUCKS = 10;
-const GAME_MAX_MISSED_DUCKS = [4, 3, 2, 1, 0]; // 5 levels of missed ducks
+const GAME_NUMBER_OF_DUCKS = 1;
+const GAME_MAX_MISSED_DUCKS = [0, 3, 2, 1, 0]; // 5 levels of missed ducks
 const GAME_TIME_IN_MS = 1200000; // global timeout
 const GAME_ROUND_MAX_TIME_DUCK_STAYS_IN_MS = 5000;
 const GAME_ROUND_NUMBER_OF_SHOOTS = 3;
 const DUCK_ELEMENT_NAME = "duck";
+const gunshotSounds = [
+  new Audio("sound/gun.mp3"),
+  new Audio("sound/gun.mp3"),
+  new Audio("sound/gun.mp3"),
+];
 
 const GAME_VARS = {
   gameState: "idle", // idle, round, duck_flew_away, end
@@ -21,8 +26,8 @@ const GAME_VARS = {
 
 const ANIMATIONS_TIME_IN_MS = {
   startDogAnimation: 7000,
-  dogCatchBird: 5000,
-  dogLaugh: 5000,
+  dogCatchBird: 3000,
+  dogLaugh: 4000,
 };
 
 const getMaxMissedDucks = function () {
@@ -53,6 +58,8 @@ const shoot = function (duckHitted) {
   }
 
   console.log("Duck hit!");
+  const bulletToRemove = `bullet-${GAME_VARS.shotsRemaining + 1}`;
+  document.getElementById(bulletToRemove).outerHTML = "";
   GAME_VARS.gameState = "idle";
   GAME_VARS.duckRoundArray.push(1);
   GAME_VARS.ducksRemaining--;
@@ -81,6 +88,13 @@ document.onclick = function (event) {
   if (GAME_VARS.gameState !== "round") {
     console.warn("Game is not in 'round' state, ignoring click");
     return;
+  }
+
+  if (GAME_VARS.shotsRemaining > 0) {
+    // Play the gunshot sound
+    const soundIndex = GAME_ROUND_NUMBER_OF_SHOOTS - GAME_VARS.shotsRemaining;
+    gunshotSounds[soundIndex].currentTime = 0;
+    gunshotSounds[soundIndex].play();
   }
   event.target.id === DUCK_ELEMENT_NAME ? shoot(true) : shoot(false);
 };
@@ -120,8 +134,7 @@ const startGame = async function () {
     containerDucks.classList.add("flash");
 
     await sleep(5000);
-
-    //GAME_VARS.duckRoundArray = [];
+    
     containerDucks.classList.remove("flash");
 
     // Check if all ducks were shot before resetting the array
@@ -145,20 +158,26 @@ const startGame = async function () {
     // check if player goes to next round
     const numberOfTotalMissedDucks = GAME_NUMBER_OF_DUCKS - GAME_VARS.ducksShotOnRound;
     if (numberOfTotalMissedDucks > maxMissedDucks) {
+      gameOver(
+        `Player missed more then ${maxMissedDucks} ducks: ${numberOfTotalMissedDucks}`
+      );
       console.log(
         `Game over! Reason: Player missed more then ${maxMissedDucks} ducks: ${numberOfTotalMissedDucks}`
       );
       GAME_VARS.gameState = "end";
+
       updateGameText();
 
-      dogLaugh();
       console.log(
         `Dog animation laughing for ${ANIMATIONS_TIME_IN_MS.dogLaugh} miliseconds...`
       );
       sleep(ANIMATIONS_TIME_IN_MS.dogLaugh);
       return;
     }
-
+    if (GAME_VARS.timeRemaining - timeElapsedInMs <= 0) {
+      gameOver("Timer ran out");
+      return;
+    }
     console.log("NEW ROUND!");
 
     GAME_VARS.round += 1;
@@ -183,7 +202,7 @@ const startGame = async function () {
     console.log(
       `Initial animation for ${ANIMATIONS_TIME_IN_MS.startDogAnimation} miliseconds...`
     );
-    startDogAnimation();
+    //startDogAnimation();
     await sleep(ANIMATIONS_TIME_IN_MS.startDogAnimation);
 
     roundTag.style.display = "none";
@@ -212,6 +231,41 @@ const startGame = async function () {
     await startGame();
   }
 };
+
+const gameOver = async function (reason) {
+  console.log(`Game over! Reason: ${reason}`);
+  GAME_VARS.gameState = "end";
+  updateGameText();
+
+  // Show game over elements
+  const gameOverElement = document.getElementById("game-over-id");
+  const gameOverDiv = document.getElementById("game-over");
+  const gameOverText = document.getElementById("gameOverText");
+  gameOverElement.style.display = "block";
+  gameOverDiv.style.display = "block";
+  gameOverText.style.display = "block";
+
+  const gameOverSound = new Audio("sound/gameOver.mp3");
+  const playSound = () => {
+    return new Promise((resolve) => {
+      gameOverSound.onended = resolve;
+      gameOverSound.play();
+    });
+  };
+
+  // After sounds finish, start dog laugh animation
+  await playSound();
+  dogLaugh();
+  console.log(
+    `Dog animation laughing for ${ANIMATIONS_TIME_IN_MS.dogLaugh} milliseconds...`
+  );
+  await sleep(ANIMATIONS_TIME_IN_MS.dogLaugh);
+};
+
+// Helper function to create a delay
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 const startRound = async function () {
   // only shows dog showing the shot ducks when is not the first step round and game is idle
@@ -270,6 +324,8 @@ const startRound = async function () {
 
       const waitTime = 3000;
       const flyTag = document.getElementById("fly-tag");
+      const skyBackground = document.getElementById("container-sky");
+      skyBackground.classList.add("fly-away-sky-bg-color");
       flyTag.style.display = "block";
 
       console.log(
@@ -277,6 +333,7 @@ const startRound = async function () {
       );
       await sleep(waitTime);
       flyTag.style.display = "none";
+      skyBackground.classList.remove("fly-away-sky-bg-color");
 
       updateGameText();
       break;
