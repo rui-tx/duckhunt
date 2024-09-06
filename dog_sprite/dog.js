@@ -8,7 +8,7 @@ const getDeviceType = () => {
   if (mediaQueries.mobile.matches) return "mobile";
   if (mediaQueries.ipad.matches) return "ipad";
   return "desktop";
-}
+};
 const adjustAnimationForDevice = () => {
   const deviceType = getDeviceType();
   let scale, bottom, duration;
@@ -31,7 +31,7 @@ const adjustAnimationForDevice = () => {
   dog.style.scale = scale;
   dog.style.bottom = `${bottom}px`;
   return duration;
-}
+};
 
 /**************************DOG SOUNDS***************************** */
 
@@ -61,7 +61,7 @@ const playDogSounds = () => {
     playRapidBarks();
     dogSound.onended = null;
   };
-}
+};
 
 /**************************DOG ANIMATION***************************** */
 
@@ -72,13 +72,14 @@ const startDogAnimation = () => {
   dog.style.display = "block";
   dog.style.left = "10%";
   dog.style.bottom = "80%";
+  dog.style.zIndex = "100000";
   dog.style.animation = `dogWalk 0.5s steps(1) infinite, dogMove ${duration}s linear forwards`;
   setTimeout(() => {
     if (!isJumping) {
       stopWalkingAndPrepareJump();
     }
   }, duration * 1000);
-}
+};
 
 /**************************DOG WALK AND STOP TO JUMP***************************** */
 
@@ -93,7 +94,7 @@ const stopWalkingAndPrepareJump = () => {
     dog.style.backgroundPosition = "-60px -58px";
     jump();
   }, 500);
-}
+};
 const jump = () => {
   const deviceType = getDeviceType();
   let jumpHeight, initialBottom;
@@ -122,7 +123,7 @@ const jump = () => {
       isJumping = false;
     }, 300);
   }, 500);
-}
+};
 
 /**************************DOG LAUGH***************************** */
 
@@ -167,7 +168,7 @@ const dogLaugh = () => {
       dog.style.backgroundPosition = "-180px -58px";
     }
     isLaughing = !isLaughing;
-  }
+  };
 
   const laughInterval = setInterval(toggleLaughSprite, 100);
 
@@ -185,7 +186,7 @@ const dogLaugh = () => {
     clearInterval(laughInterval);
     dog.style.display = "none";
   }, 2000);
-}
+};
 
 /**************************CATCH ONE BIRD***************************** */
 
@@ -235,4 +236,4 @@ const dogCatchBird = () => {
   setTimeout(() => {
     dog.style.display = "none";
   }, 2000);
-}
+};

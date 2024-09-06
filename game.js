@@ -1,4 +1,4 @@
-const GAME_NUMBER_OF_DUCKS = 10;
+const GAME_NUMBER_OF_DUCKS = 2;
 const GAME_MAX_MISSED_DUCKS = [4, 3, 2, 1, 0]; // 5 levels of missed ducks
 const GAME_TIME_IN_MS = 1200000; // global timeout
 const GAME_ROUND_MAX_TIME_DUCK_STAYS_IN_MS = 5000;
@@ -140,22 +140,19 @@ const startGame = async function () {
     containerDucks.classList.add("flash");
 
     await sleep(3000);
-    
+
     containerDucks.classList.remove("flash");
-
-
 
     // Check if all ducks were shot before resetting the array
     const allDucksShot = GAME_VARS.duckRoundArray.every((duck) => duck === 1);
     if (allDucksShot) {
-      console.log('All ducks shot! Adding bonus...');
+      console.log("All ducks shot! Adding bonus...");
       GAME_VARS.score += 10000; // Add the bonus
       updateGameText(); // Update the score display
     }
 
     // Now it's safe to reset the array
     GAME_VARS.duckRoundArray = [];
-
 
     for (let i = 1; i <= GAME_NUMBER_OF_DUCKS; i++) {
       const node = document.getElementById(`duck-${i}`);
@@ -165,7 +162,8 @@ const startGame = async function () {
     const maxMissedDucks = getMaxMissedDucks();
 
     // check if player goes to next round
-    const numberOfTotalMissedDucks = GAME_NUMBER_OF_DUCKS - GAME_VARS.ducksShotOnRound;
+    const numberOfTotalMissedDucks =
+      GAME_NUMBER_OF_DUCKS - GAME_VARS.ducksShotOnRound;
     if (numberOfTotalMissedDucks > maxMissedDucks) {
       gameOver(
         `Player missed more then ${maxMissedDucks} ducks: ${numberOfTotalMissedDucks}`
@@ -181,14 +179,11 @@ const startGame = async function () {
         `Dog animation laughing for ${ANIMATIONS_TIME_IN_MS.dogLaugh} miliseconds...`
       );
 
-      sleep(ANIMATIONS_TIME_IN_MS.dogLaugh);
+      await sleep(ANIMATIONS_TIME_IN_MS.dogLaugh);
 
       return;
     }
-    if (GAME_VARS.timeRemaining - timeElapsedInMs <= 0) {
-      gameOver("Timer ran out");
-      return;
-    }
+
     console.log("NEW ROUND!");
 
     //increase duck speed on the next round
@@ -316,7 +311,7 @@ const startRound = async function () {
   const startTime = Date.now();
 
   //for (let i = 0; i < GAME_NUMBER_OF_DUCKS; i++) {
-    newDuck();
+  newDuck();
   //}
 
   while (true) {
