@@ -4,12 +4,12 @@ const mediaQueries = {
   mobile: window.matchMedia("(max-width: 430px) and (max-height: 932px)"),
   ipad: window.matchMedia("(max-width: 1024px) and (max-height: 1366px)"),
 };
-function getDeviceType() {
+const getDeviceType = () => {
   if (mediaQueries.mobile.matches) return "mobile";
   if (mediaQueries.ipad.matches) return "ipad";
   return "desktop";
-}
-function adjustAnimationForDevice() {
+};
+const adjustAnimationForDevice = () => {
   const deviceType = getDeviceType();
   let scale, bottom, duration;
   switch (deviceType) {
@@ -31,7 +31,7 @@ function adjustAnimationForDevice() {
   dog.style.scale = scale;
   dog.style.bottom = `${bottom}px`;
   return duration;
-}
+};
 
 /**************************DOG SOUNDS***************************** */
 
@@ -42,7 +42,7 @@ const laugh = new Audio("sound/dog_laugh.mp3");
 const gunshot = new Audio("sound/gun.mp3");
 let barkCount = 0;
 
-function playRapidBarks() {
+const playRapidBarks = () => {
   if (barkCount < 3) {
     dogBarkSound.currentTime = 0;
     dogBarkSound.play();
@@ -52,37 +52,38 @@ function playRapidBarks() {
   } else {
     barkCount = 0;
   }
-}
+};
 
-function playDogSounds() {
+const playDogSounds = () => {
   dogSound.play();
 
   dogSound.onended = () => {
     playRapidBarks();
     dogSound.onended = null;
   };
-}
+};
 
 /**************************DOG ANIMATION***************************** */
 
-function startDogAnimation() {
+const startDogAnimation = () => {
   playDogSounds();
 
   const duration = adjustAnimationForDevice();
   dog.style.display = "block";
   dog.style.left = "10%";
   dog.style.bottom = "80%";
+  dog.style.zIndex = "100000";
   dog.style.animation = `dogWalk 0.5s steps(1) infinite, dogMove ${duration}s linear forwards`;
   setTimeout(() => {
     if (!isJumping) {
       stopWalkingAndPrepareJump();
     }
   }, duration * 1000);
-}
+};
 
 /**************************DOG WALK AND STOP TO JUMP***************************** */
 
-function stopWalkingAndPrepareJump() {
+const stopWalkingAndPrepareJump = () => {
   if (isJumping) return;
   isJumping = true;
   let currentLeft = window.getComputedStyle(dog).getPropertyValue("left");
@@ -93,8 +94,8 @@ function stopWalkingAndPrepareJump() {
     dog.style.backgroundPosition = "-60px -58px";
     jump();
   }, 500);
-}
-function jump() {
+};
+const jump = () => {
   const deviceType = getDeviceType();
   let jumpHeight, initialBottom;
   switch (deviceType) {
@@ -122,11 +123,11 @@ function jump() {
       isJumping = false;
     }, 300);
   }, 500);
-}
+};
 
 /**************************DOG LAUGH***************************** */
 
-function dogLaugh() {
+const dogLaugh = () => {
   setTimeout(() => {
     laugh.play();
   }, 800);
@@ -160,14 +161,14 @@ function dogLaugh() {
   dog.style.zIndex = "-100";
   dog.style.bottom = `${initialBottom}px`;
 
-  function toggleLaughSprite() {
+  const toggleLaughSprite = () => {
     if (isLaughing) {
       dog.style.backgroundPosition = "-240px -58px";
     } else {
       dog.style.backgroundPosition = "-180px -58px";
     }
     isLaughing = !isLaughing;
-  }
+  };
 
   const laughInterval = setInterval(toggleLaughSprite, 100);
 
@@ -185,11 +186,11 @@ function dogLaugh() {
     clearInterval(laughInterval);
     dog.style.display = "none";
   }, 2000);
-}
+};
 
 /**************************CATCH ONE BIRD***************************** */
 
-function dogCatchBird() {
+const dogCatchBird = () => {
   setTimeout(() => {
     catchBird.play();
   }, 800);
@@ -235,4 +236,4 @@ function dogCatchBird() {
   setTimeout(() => {
     dog.style.display = "none";
   }, 2000);
-}
+};
