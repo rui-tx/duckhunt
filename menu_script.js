@@ -84,7 +84,7 @@ function playPreciseAudioLoop(url, loopStart, loopEnd) {
       sourceNode.buffer = audioBuffer;
 
       // Set loop points
-      sourceNode.loop = true;
+      sourceNode.loop = false;
       sourceNode.loopStart = loopStart;
       sourceNode.loopEnd = loopEnd;
 
