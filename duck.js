@@ -24,7 +24,7 @@ const frameDead = [
 ]
 
 const frameShot = [
-    {position: "-131px -238px", width : 31, height: 29 }
+    {position: "-131px -238px", width : 31, height: 29}
 ]
 
 let xVelocity = 500;
@@ -39,18 +39,21 @@ let currentFrame = frameRight;
 let currentFrameIndex = 0;
 let isFlipped = false;
 let animationInterval = 200;
+let baseVelocity = 2;
+let isFalling = false;
+let animationId;
 
 function updateCurrentFrame() {
     const angle = calculateAngle(xVelocity, yVelocity);
     //check direction angle to apply animation
     if (Math.abs(angle) <= 45) {
-        currentFrame = frameUp;
+        currentFrame = frameRight;
     } else if (angle > 45 && angle <= 135) {
         currentFrame = frameDiagonalRight;
     } else if (angle >= -135 && angle < -45) {
         currentFrame = frameDiagonalRight;
     } else {
-        currentFrame = frameUp;
+        currentFrame = frameRight;
     }
     resetFrame();
 }
@@ -79,10 +82,11 @@ function animate(frame, interval) {
             lastUpdate = timestamp;
         }
         if (duck.style.display !== 'none') {
-            requestAnimationFrame(updateFrame);
+            animationId = requestAnimationFrame(updateFrame);
         }
+
     }
-    requestAnimationFrame(updateFrame);
+    animationId = requestAnimationFrame(updateFrame);
 }
 
 //move duck randomly
@@ -96,14 +100,16 @@ function moveDuck() {
     let xPos = parseFloat(duck.style.left) || 0;
     let yPos = parseFloat(duck.style.top) || 0;
 
+
     //if time ends the duck leave by the top screen
-    if (timeEnded && !leaveScreen) {
-        currentFrame = frameUp;
-        yVelocity = -Math.abs(yVelocity);
-        xVelocity = 0;
-        leaveScreen = true;
-        animate(currentFrame, animationInterval);
-    }
+    // if (timeEnded) {
+    //     cancelAnimationFrame(animationId);
+    //     currentFrame = frameUp;
+    //     yVelocity = -Math.abs(yVelocity);
+    //     xVelocity = 0;
+    //     leaveScreen = true;
+    //     animate(currentFrame, animationInterval);
+    // }
 
     //get the position by the velocity
     xPos += xVelocity;
@@ -125,6 +131,9 @@ function moveDuck() {
     }
 
     if (yPos < 0) {
+        if (leaveScreen) {
+            duck.style.visibility = "hidden";
+        }
         if (!timeEnded) {
             yPos = 0;
             yVelocity = -yVelocity;
@@ -132,8 +141,11 @@ function moveDuck() {
             yPos = -duckHeight;
             
             if(leaveScreen) {
-                clearInterval(intervalMovement);
-                duck.style.display = 'none';
+                duck.style.visibility = "hidden";
+                // clearInterval(intervalMovement);
+                // duck.style.display = 'none';
+                // currentFrame = frameRight;
+                // setTimeout(newDuck, 500);
                 return;
             }
         }
@@ -148,28 +160,6 @@ function moveDuck() {
     duck.style.top = `${yPos}px`;
 }
 
-function startDuckFallAnimation() {
-    let fallVelocity = 5;
-    const containerHeight = container.clientHeight;
-    const duckHeight = duck.clientHeight;
-
-    const fallInterval = setInterval(() => {
-        let currentY = parseFloat(duck.style.top) || 0;
-        
-        if (currentY < containerHeight) {
-            currentY += fallVelocity;
-            duck.style.top = `${currentY}px`;
-
-            if (duck.style.transform === 'scaleX(1)') {
-                duck.style.transform = 'scaleX(-1) scale(3)';
-            } else {
-                clearInterval(fallInterval);
-                duck.style.display = 'none';
-            }
-        }
-    }, 50);
-}
-
 function flipDuck(flip) {
     const flipScale = flip ? 'scaleX(-1)' : 'scaleX(1)';
     duck.style.transition = 'transform 0.05s';
@@ -177,21 +167,23 @@ function flipDuck(flip) {
 }
 
 function resetDuckPosition() {
+    cancelAnimationFrame(animationId);
     clearInterval(intervalMovement);
+    isFalling = false;
 
     const containerWidth = container.clientWidth;
     const containerHeight = container.clientHeight;
     const duckWidth = duck.clientWidth;
     const duckHeight = duck.clientHeight;
 
-    initialYPosition = containerHeight - duckHeight;
-    initialXPosition = (containerWidth - duckWidth) / 2;
+    initialYPosition = containerHeight - duckHeight - 2;
+    initialXPosition = (containerWidth - duckWidth) * Math.random();
 
     duck.style.left = `${initialXPosition}px`;
     duck.style.top = `${initialYPosition}px`;
 
-    xVelocity = (Math.random() > 0.5 ? 1 : -1) * 2;
-    yVelocity = -2;
+    xVelocity = (Math.random() > 0.5 ? 1 : -1) * baseVelocity;
+    yVelocity = -baseVelocity;
 
     resetFrame();
 
@@ -203,22 +195,112 @@ function resetDuckPosition() {
 //make the duck move
 function startMovement() {
     if (!intervalMovement){
+        
         intervalMovement = setInterval(moveDuck, 20);
+        animate(currentFrame, animationInterval);
      
-        setTimeout(() => {
-            timeEnded = true;
-        }, 10000);   
+        // setTimeout(() => {
+        //     timeEnded = true;
+        // }, 10000);   
     }
 }
 
-function createDuck() {
-    resetDuckPosition();
-    duck.style.display = 'block';
+function duckLeaves() {
+
+    cancelAnimationFrame(animationId);
+    currentFrame = frameUp;
+    yVelocity = -Math.abs(yVelocity);
+    xVelocity = 0;
+    leaveScreen = true;
     animate(currentFrame, animationInterval);
-    startMovement()
+
+}
+
+function setDuckScale(scale) {
+    duck.style.transform = `scale(${scale})`;
+}
+
+//get a new duck
+function newDuck() {
+    resetDuckPosition();
+    duck.style.visibility = "visible";
+    //duck.style.display = 'block';
+    setDuckScale(3); // Define a escala 3
+    currentFrame = frameRight;
+    //animate(currentFrame, animationInterval);
+    startMovement();
+}
+
+function stopDuckMovement() {
+    timeEnded = true;
+    clearInterval(intervalMovement);
+    //clearInterval(moveDuck);
+    //resetFrame();
 }
 
 function initializeGame() {
     console.log("initializeGame");
-    createDuck();
+    resetDuckPosition();
+    duck.style.display = 'block';
+    
+    if (isFirstDuck) {
+            animate(currentFrame, animationInterval);
+            startMovement();
+            isFirstDuck = false;
+    } else {
+        newDuck();
+    }
+}
+
+//get duck starting position when reload page
+//initializeGame();
+
+function animateHit() {
+    duck.style.backgroundPosition = frameShot[0].position;
+    duck.style.width = frameShot[0].width + "px";
+    duck.style.height = frameShot[0].height + "px";
+    duck.style.transform = `scale(3)`; // Define a escala 3
+
+    xVelocity = 0;
+    yVelocity = 0;
+
+    cancelAnimationFrame(animationId);
+    //let y = yVelocity;
+
+    //stopDuckMovement();
+    //animateFall();
+    duck.style.backgroundPosition = frameShot[0].position;
+    setTimeout(() => {
+        duck.style.backgroundPosition = frameDead[0].position; // Inicia a animação de queda após a animação de acerto
+        yVelocity = 5;
+
+        setTimeout(() => {
+            duck.style.backgroundPosition = frameDead[0].position;
+            duck.style.visibility = "hidden";
+        } , 750);
+
+        
+    }, 500); // Duração da animação de acerto
+
+    
+    
+    //leaveScreen = true;
+    //yVelocity = y;
+
+    
+    
+    
+}
+
+function animateFall() {
+    // Altera o frame para a animação de queda
+    //currentFrame = frameDead;
+    // animate(currentFrame, animationInterval);
+
+    // // Inicia o movimento para baixo
+    // yVelocity = 3; // Ajuste a velocidade conforme necessário
+    // xVelocity = 0;
+    // leaveScreen = true;
+    // setDuckScale(3); // Define a escala 3
+    // stopDuckMovement();
 }
