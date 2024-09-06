@@ -54,7 +54,7 @@
 .perfect-tag {
   position: absolute;
   display: flex;
-  width: 17%;
+  width: 25%;
   height: 25%;
   left: 50%;
   transform: translate(-50%);

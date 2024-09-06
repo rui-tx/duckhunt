@@ -1,6 +1,5 @@
-const topScoreElement = document.getElementById("var-top-score");
-const GAME_NUMBER_OF_DUCKS = 10;
-const GAME_MAX_MISSED_DUCKS = [4, 3, 2, 1, 0]; // 5 levels of missed ducks
+const GAME_NUMBER_OF_DUCKS = 1;
+const GAME_MAX_MISSED_DUCKS = [0, 3, 2, 1, 0]; // 5 levels of missed ducks
 const GAME_TIME_IN_MS = 1200000; // global timeout
 const GAME_ROUND_MAX_TIME_DUCK_STAYS_IN_MS = 5000;
 const GAME_ROUND_NUMBER_OF_SHOOTS = 3;
@@ -35,8 +34,6 @@ const ANIMATIONS_TIME_IN_MS = {
 function updateTopScore(newScore) {
   // Update localStorage with the new top score
   localStorage.setItem("topScore", newScore);
-  // Update the HTML element with the new top score
-  topScoreElement.textContent = `TOP SCORE = ${newScore}`;
 }
 
 const getMaxMissedDucks = function () {
@@ -152,10 +149,15 @@ const startGame = async function () {
 
     containerDucks.classList.remove("flash");
 
+    const perfectScore = document.getElementById("perfect");
+
     // Check if all ducks were shot before resetting the array
     const allDucksShot = GAME_VARS.duckRoundArray.every((duck) => duck === 1);
     if (allDucksShot) {
       console.log("All ducks shot! Adding bonus...");
+      perfectScore.style.display = "block";
+      await sleep(2000);
+      perfectScore.style.display = "none";
       GAME_VARS.score += 10000; // Add the bonus
       updateGameText(); // Update the score display
     }
