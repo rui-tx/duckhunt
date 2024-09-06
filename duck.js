@@ -229,6 +229,7 @@ function newDuck() {
     currentFrame = frameRight;
     //animate(currentFrame, animationInterval);
     startMovement();
+    startDuckFlapSound();
 }
 
 function stopDuckMovement() {
@@ -303,4 +304,30 @@ function animateFall() {
     // leaveScreen = true;
     // setDuckScale(3); // Define a escala 3
     // stopDuckMovement();
+}
+
+let audioContext;
+let duckFlapSource;
+function startDuckFlapSound() {
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  fetch("sound/duck_flap.mp3")
+    .then((response) => response.arrayBuffer())
+    .then((arrayBuffer) => audioContext.decodeAudioData(arrayBuffer))
+    .then((audioBuffer) => {
+      duckFlapSource = audioContext.createBufferSource();
+      duckFlapSource.buffer = audioBuffer;
+      duckFlapSource.loop = true;
+      duckFlapSource.playbackRate.value = 0.9;
+      duckFlapSource.connect(audioContext.destination);
+      duckFlapSource.start();
+    })
+    .catch((e) => console.error("Error with duck flap sound:", e));
+}
+function stopDuckFlapSound() {
+  if (duckFlapSource) {
+    duckFlapSource.stop();
+    duckFlapSource = null;
+  }
 }
