@@ -297,6 +297,7 @@ const gameOver = async function (reason) {
     `Dog animation laughing for ${ANIMATIONS_TIME_IN_MS.dogLaugh} milliseconds...`
   );
   await sleep(ANIMATIONS_TIME_IN_MS.dogLaugh);
+  window.location.href = "index.html";
 };
 
 const startRound = async function () {
