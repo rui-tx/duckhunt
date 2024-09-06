@@ -212,6 +212,7 @@ const startGame = async function () {
 
   // only shows dog walk and jump animation when is the first step round
   if (GAME_VARS.currentStep === 0) {
+    stopDuckFlapSound();
     const roundTag = document.getElementById("round-tag");
     const tagRound = document.getElementById("tag-round");
     tagRound.innerHTML = GAME_VARS.round;
@@ -220,7 +221,8 @@ const startGame = async function () {
     console.log(
       `Initial animation for ${ANIMATIONS_TIME_IN_MS.startDogAnimation} miliseconds...`
     );
-    startDogAnimation();
+    //startDogAnimation();
+    dogCatchBird();
     await sleep(ANIMATIONS_TIME_IN_MS.startDogAnimation);
 
     roundTag.style.display = "none";
@@ -247,6 +249,7 @@ const startGame = async function () {
       `Dog animation laughing when duck flies away for ${ANIMATIONS_TIME_IN_MS.dogLaugh} miliseconds...`
     );
     dogLaugh();
+
     await sleep(ANIMATIONS_TIME_IN_MS.dogLaugh);
     await startGame();
   }
@@ -330,6 +333,7 @@ const startRound = async function () {
 
   //for (let i = 0; i < GAME_NUMBER_OF_DUCKS; i++) {
   newDuck();
+  startDuckFlapSound();
   //}
 
   while (true) {
@@ -360,7 +364,7 @@ const startRound = async function () {
       GAME_VARS.duckRoundArray.push(0);
 
       duckLeaves();
-
+      stopDuckFlapSound();
       const waitTime = 3000;
       const flyTag = document.getElementById("fly-tag");
       const skyBackground = document.getElementById("container-sky");
